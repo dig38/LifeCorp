@@ -11,16 +11,16 @@
 								
 					<div id="navbar" class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
-						<c:if test="${admin == null || admin == false}">
+						<c:if test="${isAdmin == null || isAdmin == false}">
 							<li class="active"><a href="index.jsp">Home</a></li>
 						</c:if>
-						<c:if test="${admin == true}">
+						<c:if test="${isAdmin == true}">
 							<li class="active"><a href="admin.jsp">Admin Home</a></li>
 						</c:if>
-							<c:if test="${customer != null && admin != true}">
+							<c:if test="${customer != null && isAdmin != true}">
 								<li><a href="/OrderHistory">Order History</a></li>
 							</c:if>
-							<c:if test="${customer == null || admin == null}">
+							<c:if test="${customer == null || isAdmin == null}">
 								<li><a href="/login.jsp">Login</a></li>
 							</c:if>
 						</ul>
