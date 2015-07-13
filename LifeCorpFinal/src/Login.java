@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import data.DemoAdminDB;
 import data.DemoCustomerDB;
 import model.DemoCustomer;
 import model.DemoOrder;
@@ -48,11 +49,24 @@ public class Login extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		
+		
 		if(action.equals("existingCustomer"))
 		{
+			DemoCustomer customer = null;
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
-			DemoCustomer customer = DemoCustomerDB.getCustomerByLogin(email, password);
+			boolean isAdmin = false;
+			
+			if(DemoAdminDB.getCustomerByLogin(email, password) != null)
+			{
+				isAdmin = true;
+				session.setAttribute("isAdmin", isAdmin);
+				url = "/admin.jsp";
+			}
+			else
+			{
+				customer = DemoCustomerDB.getCustomerByLogin(email, password);
+			}
 			
 			if (customer != null)	// existing customer object returned from login
 			{
@@ -71,11 +85,11 @@ public class Login extends HttpServlet {
 				else	// no order in progress return user to product list
 				{
 					session.setAttribute("customer", customer);
-					url = "/index.jsp";
+					url = "/DisplayProducts";
 				}
 			}
-			else	// no customer returned - set error message in message1
-			{
+			else if(!isAdmin)	// no customer returned - if admin, user will be directed to /admin.jsp no user was found 
+			{					// in the database and is not admin, bad login attempt so direct back to /login.jsp page
 				url = "/login.jsp";
 				request.setAttribute("message1", "Password or user email missing/incorrect.");
 			}
@@ -124,7 +138,7 @@ public class Login extends HttpServlet {
 				{
 					session.setAttribute("customer", customer);
 					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-" + customer.getCreditCard().substring(15));
-					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
+					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
 					url = "/DisplayProducts";
 					// url = "/index.jsp";
 				}
