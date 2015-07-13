@@ -52,6 +52,7 @@ public class DisplayProducts extends HttpServlet {
 		String url = "/displayProducts.jsp";
 		String category = request.getParameter("category");
 		
+		
 		if (request.getParameter("category") == null)
 		{
 			// start up case or user did not make a selection return all categories

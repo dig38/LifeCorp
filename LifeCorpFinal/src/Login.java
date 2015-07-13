@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
 					DemoOrder order = (DemoOrder)session.getAttribute("order");
 					order.setDemoCustomer(customer);
-					url = "/displayOrderItems.jsp";
+					url = "/orderCart.jsp";
 					session.setAttribute("order", order);
 				}
 				else	// no order in progress return user to product list
@@ -117,7 +117,7 @@ public class Login extends HttpServlet {
 					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
 					DemoOrder order = (DemoOrder)session.getAttribute("order");
 					order.setDemoCustomer(customer);
-					url = "/displayOrderItems.jsp";
+					url = "/orderCart.jsp";
 					session.setAttribute("order", order);
 				}
 				else	// no order in progress return user to product list
@@ -125,7 +125,8 @@ public class Login extends HttpServlet {
 					session.setAttribute("customer", customer);
 					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-" + customer.getCreditCard().substring(15));
 					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
-					url = "/index.jsp";
+					url = "/DisplayProducts";
+					// url = "/index.jsp";
 				}
 			}
 			else	// customer ID = 0 indicates a problem or duplicate creating customer 

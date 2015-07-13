@@ -75,7 +75,7 @@
 			        <td>"<c:out value='${p.productName}'/>"</td>
 			        <td class="right"><fmt:formatNumber value="${p.listPrice}" type="currency"/></td>
 			        
-			        <td><form action="OrderBuilderServlet" method="post">
+			        <td><form action="Details" method="post">
 			        	<input type="hidden" name="action" value="productDetail">
 			            <input type="hidden" name="productId" value="<c:out value='${p.productId}'/>">
 			                <input type="submit" value="See Detail">
