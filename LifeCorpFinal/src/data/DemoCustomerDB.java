@@ -59,11 +59,11 @@ public class DemoCustomerDB
 	public static DemoCustomer getCustomerByLogin(String email, String password)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		// String qString = "SELECT d FROM DemoCustomer d WHERE d.password = :password AND d.custEmail = :email";
-		String qString = "SELECT d FROM DemoCustomer d WHERE d.custEmail = :email";
+		String qString = "SELECT d FROM DemoCustomer d WHERE d.custPassword = :password AND d.custEmail = :email";
+		// String qString = "SELECT d FROM DemoCustomer d WHERE d.custEmail = :email";
 		TypedQuery<DemoCustomer> q = em.createQuery(qString, DemoCustomer.class);
 		q.setParameter("email", email);
-		// q.setParameter("password", password);
+		q.setParameter("password", password);
 		
 		DemoCustomer customer = null;
 		

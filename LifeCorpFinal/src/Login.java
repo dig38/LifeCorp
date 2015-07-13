@@ -88,7 +88,7 @@ public class Login extends HttpServlet {
 			customer.setCustLastName(request.getParameter("lastName"));
 			customer.setCustEmail(request.getParameter("email"));
 			customer.setPhoneNumber1(request.getParameter("phone"));
-			// customer.setCustPassword(request.getParameter("password"))
+			customer.setCustPassword(request.getParameter("password"));
 			customer.setCustStreetAddress1(request.getParameter("shipToStreet"));
 			customer.setCustCity(request.getParameter("shipToCity"));
 			customer.setCustState(request.getParameter("shipToState"));
