@@ -78,7 +78,7 @@
 			        <td><form action="Details" method="post">
 			        	<input type="hidden" name="action" value="productDetail">
 			            <input type="hidden" name="productId" value="<c:out value='${p.productId}'/>">
-			                <input type="submit" value="See Detail">
+			                <input type="submit" value="See Detail" >
 			            </form></td>
 			        
 			        

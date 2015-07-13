@@ -77,7 +77,7 @@
 			        <input type="number" name="quantity" class="right narrow"
 			               value="<c:out value='${item.quantity}'/>" id="quantity" maxlength="2" 
 			               min="1" max="20" />
-			        <input type="submit" value="Update" class="buttonFont" >
+			        <input type="submit" value="Update" class="cartButtons" >
 			     </form>
 			    </td>
 			    <td class="description" ><c:out value='${item.demoProductInfo.productName}'/></td>
@@ -91,7 +91,7 @@
 			        <input type="hidden" name="productId" 
 			               value="<c:out value='${item.demoProductInfo.productId}'/>">
 			        <input type="hidden" name="quantity" value="0">
-			        <input type="submit" value="Remove Item" class="buttonFont" >
+			        <input type="submit" value="Remove Item" class="cartButtons" >
 			      </form>
 			    </td>
 			  </tr>

@@ -139,6 +139,10 @@ input.moreNarrow
 	color: black;
 	font-size: 80%;
 }
+.cartButtons
+{
+	font-size: 60%;
+}
 .description
 {
 	width: 60em;
