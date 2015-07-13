@@ -118,6 +118,12 @@ input.wide
 {
 	width: 20em;
 }
+span
+{
+	width: 40em;
+	font-size: 80%;
+	text-align: left;
+}
 .narrow
 {
 	width: 20em;
@@ -128,7 +134,10 @@ input.moreNarrow
 }
 .buttonFont
 {
-	font-size: 60%;
+	height: 5%;
+	width: 15%;
+	color: black;
+	font-size: 80%;
 }
 .description
 {
