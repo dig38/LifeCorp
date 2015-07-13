@@ -45,7 +45,7 @@ public class Details extends HttpServlet {
 		request.setAttribute("productDetails", product);
 		
 		
-		getServletContext().getRequestDispatcher("/Details.jsp").forward(request, response); //forwarding it to page Details.jsp, which will display the following info.
+		getServletContext().getRequestDispatcher("/details.jsp").forward(request, response); //forwarding it to page Details.jsp, which will display the following info.
 		
 		
 	}
