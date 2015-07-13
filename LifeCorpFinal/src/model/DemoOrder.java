@@ -105,5 +105,44 @@ public class DemoOrder implements Serializable {
 
 		return demoOrderItem;
 	}
+	
+	// Items below added to make cart work while not overriding original JPA classes
+	public DemoOrderItem addCartOrderItem(DemoOrderItem item) 
+	{
+        String code = new Long(item.getDemoProductInfo().getProductId()).toString();
+        BigDecimal quantity = new BigDecimal(item.getQuantity().toString());
+        List<DemoOrderItem> items = getDemoOrderItems();
+        for (int i = 0; i < items.size(); i++) 
+        {
+        	DemoOrderItem orderItem = items.get(i);
+            if (new Long(orderItem.getDemoProductInfo().getProductId()).toString().equals(code)) 
+            {
+            	orderItem.setQuantity(quantity);
+                // orderItem.setOrder(this);   ???
+            	return item;
+            }
+        }
+        items.add(item);
+        item.setDemoOrder(this);	// when creating the order item, need to have an order object
+        return item;			// pointing to it.  
+    }
+
+    public DemoOrderItem removeCartOrderItem(DemoOrderItem item) 
+    {
+        String code = new Long(item.getDemoProductInfo().getProductId()).toString();
+        List<DemoOrderItem> items = getDemoOrderItems();
+        for (int i = 0; i < items.size(); i++) 
+        {
+        	DemoOrderItem orderItem = items.get(i);
+            if (new Long(orderItem.getDemoProductInfo().getProductId()).toString().equals(code)) 
+            {
+                items.remove(i);
+                orderItem.setDemoOrder(null);	// since this order is removed - it should have no order
+                return item;				// object pointing to it.
+            }
+        }
+        
+        return item;
+    }
 
 }

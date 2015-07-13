@@ -1,0 +1,142 @@
+
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import data.DemoCustomerDB;
+import model.DemoCustomer;
+import model.DemoOrder;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		HttpSession session = request.getSession();
+		long custId=0;
+		String url = null;
+		String action = request.getParameter("action");
+		
+		
+		if(action.equals("existingCustomer"))
+		{
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			DemoCustomer customer = DemoCustomerDB.getCustomerByLogin(email, password);
+			
+			if (customer != null)	// existing customer object returned from login
+			{
+				if (session.getAttribute("order") != null)	// check if order in progress
+				{
+					// order in progress - get existing customer, order, add customer to order
+					// and set URL
+					session.setAttribute("customer", customer);
+					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-" + customer.getCreditCard().substring(15));
+					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
+					DemoOrder order = (DemoOrder)session.getAttribute("order");
+					order.setDemoCustomer(customer);
+					url = "/displayOrderItems.jsp";
+					session.setAttribute("order", order);
+				}
+				else	// no order in progress return user to product list
+				{
+					session.setAttribute("customer", customer);
+					url = "/index.jsp";
+				}
+			}
+			else	// no customer returned - set error message in message1
+			{
+				url = "/login.jsp";
+				request.setAttribute("message1", "Password or user email missing/incorrect.");
+			}
+		}
+		else if(action.equals("newCustomer"))	// new customer - get parameters to build new customer
+		{
+			System.out.println("Get new customer details and create customer");
+			DemoCustomer customer = new DemoCustomer();
+			customer.setCustFirstName(request.getParameter("firstName"));
+			customer.setCustLastName(request.getParameter("lastName"));
+			customer.setCustEmail(request.getParameter("email"));
+			customer.setPhoneNumber1(request.getParameter("phone"));
+			// customer.setCustPassword(request.getParameter("password"))
+			customer.setCustStreetAddress1(request.getParameter("shipToStreet"));
+			customer.setCustCity(request.getParameter("shipToCity"));
+			customer.setCustState(request.getParameter("shipToState"));
+			customer.setCustPostalCode(request.getParameter("shipToZip"));
+			customer.setCreditLimit(new BigDecimal("1000"));
+			
+			DemoCustomer testExistCustomer = DemoCustomerDB.doesCustomerEmailExist(customer.getCustEmail());
+			
+			if (testExistCustomer == null)	// test for no existing customer with same email to preclude duplicates
+			{
+				custId = DemoCustomerDB.insertCustomerReturnId(customer);
+			}
+			else
+			{
+				custId = 0; 	// confirm initialized value indicating duplicate
+			}
+			
+			if(custId != 0)	// new customer created without duplication;
+			{
+				if (session.getAttribute("order") != null)	// check if order in progress
+				{
+					// order in progress - get existing customer, order, add customer to order
+					// and set URL
+					session.setAttribute("customer", customer);
+					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-" + customer.getCreditCard().substring(15));
+					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
+					DemoOrder order = (DemoOrder)session.getAttribute("order");
+					order.setDemoCustomer(customer);
+					url = "/displayOrderItems.jsp";
+					session.setAttribute("order", order);
+				}
+				else	// no order in progress return user to product list
+				{
+					session.setAttribute("customer", customer);
+					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-" + customer.getCreditCard().substring(15));
+					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
+					url = "/index.jsp";
+				}
+			}
+			else	// customer ID = 0 indicates a problem or duplicate creating customer 
+					// - send user back to login page
+			{
+				url = "/login.jsp";
+				request.setAttribute("message2", "Problem or account already exists - please try again.");
+			}
+		}
+		
+		getServletContext().getRequestDispatcher(url).forward(request, response);
+	}
+
+}
