@@ -41,7 +41,9 @@ public class Details extends HttpServlet {
 		
 		//calling the getProductById method to retrieve the data.
 		DemoProductInfo product = DemoProductInfoDB.getProductById(new Long(productId));
-		System.out.println("The Product Details: " +product.getProductId() +product.getProductName() +product.getListPrice() +product.getCategory());
+		
+		request.setAttribute("productDetails", product);
+		
 		
 		getServletContext().getRequestDispatcher("/Details.jsp").forward(request, response); //forwarding it to page Details.jsp, which will display the following info.
 		
