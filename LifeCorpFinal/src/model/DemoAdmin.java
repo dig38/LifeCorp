@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="DEMO_ADMIN")
+@Table(name="DEMO_ADMIN", schema="TESTUSER")
 @NamedQuery(name="DemoAdmin.findAll", query="SELECT d FROM DemoAdmin d")
 public class DemoAdmin implements Serializable {
 	private static final long serialVersionUID = 1L;
