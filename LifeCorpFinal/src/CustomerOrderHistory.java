@@ -3,7 +3,6 @@
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import model.DemoCustomer;
 import model.DemoOrder;
-import myTools.DBUtil;
 
 /**
  * Servlet implementation class CustomerOrderHistory
@@ -52,7 +50,7 @@ public class CustomerOrderHistory extends HttpServlet {
 		
 		request.setAttribute("allOrders", orders);
 		
-		getServletContext().getRequestDispatcher("/customerOrderHistory").forward(request, response);
+		getServletContext().getRequestDispatcher("/customerOrderHistory.jsp").forward(request, response);
 		
 	}
 
