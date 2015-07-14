@@ -15,15 +15,20 @@ public class DemoCustomerDB
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		long customerId = 0;
+		trans.begin();
 		
 		try
 		{
-			trans.begin();
+			
 			em.persist(customer);
 			em.flush();
-			customerId = customer.getCustomerId();
+			System.out.println(customer.getCustomerId());
 			trans.commit();
-			return customerId;
+			customerId = customer.getCustomerId();
+			System.out.println(customer.getCustLastName());
+			
+			// patch to correct that customer ID returned from method above is erroneous
+			return getMaxCustomerId();
 		}
 		catch (Exception e)
 		{
@@ -130,6 +135,33 @@ public class DemoCustomerDB
 		finally
 		{
 			em.close();
+		}		
+	}
+	
+	public static long getMaxCustomerId()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "SELECT d FROM DemoCustomer d ORDER BY d.customerId DESC";
+		// String qString = "SELECT d FROM DemoCustomer d WHERE d.custEmail = :email";
+		TypedQuery<DemoCustomer> q = em.createQuery(qString, DemoCustomer.class);
+		q.setFirstResult(0);
+		q.setMaxResults(1);
+		
+		DemoCustomer customer = null;
+		
+		try
+		{
+			customer = q.getSingleResult();
 		}
+		catch (NoResultException nre)
+		{
+			System.out.println("A problem occurred retrieveing a customer by login: " + nre);
+		}
+		finally
+		{
+			em.close();
+		}
+		
+		return customer.getCustomerId();
 	}
 }
