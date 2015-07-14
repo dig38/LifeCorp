@@ -12,7 +12,7 @@
 <body>
 	<c:import url="/inserts/header.jsp" />
 	<div class="container">
-	<h1>Order History</h1>
+	<h1>Order Details</h1>
 	<table class="table table-striped">
 		<tr>
 			<th>Quantity</th>
