@@ -57,7 +57,9 @@ public class Login extends HttpServlet {
 			String password = request.getParameter("password");
 			boolean isAdmin = false;
 			
-			if(DemoAdminDB.getCustomerByLogin(email, password) != null)
+			// first check the DemoAdmin table to see if the existing user exists
+			// as an admin user
+			if(DemoAdminDB.getCustomerByLogin(email, password) != null)	
 			{
 				isAdmin = true;
 				session.setAttribute("isAdmin", isAdmin);

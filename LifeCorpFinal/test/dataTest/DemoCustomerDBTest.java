@@ -17,6 +17,7 @@ public class DemoCustomerDBTest
 	public void testInsertCustomerReturnId()
 	{
 		DemoCustomer customer = new DemoCustomer();
+		customer.setCustomerId((long) 0);	// set to zero in case this makes a difference during insert and return of key field
 		customer.setCustFirstName("Gomer");
 		customer.setCustLastName("Pyle");
 		customer.setCustEmail("pyle@gmail.com");

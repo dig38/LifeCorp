@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.DemoCustomer;
 import model.DemoOrder;
 import data.DemoOrderDB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +51,12 @@ public class ConfirmOrder extends HttpServlet {
 		String url = "/thanks.jsp";
 		long orderId = 0;
 		DemoOrder order = (DemoOrder)session.getAttribute("order");
+		
+		if (order.getDemoCustomer() == null)
+		{
+			DemoCustomer customer = (DemoCustomer)session.getAttribute("customer");
+			order.setDemoCustomer(customer);
+		}
 		
 		orderId = DemoOrderDB.insertOrderReturnId(order);
 		

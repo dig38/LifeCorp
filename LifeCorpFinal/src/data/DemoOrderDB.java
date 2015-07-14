@@ -150,4 +150,28 @@ public class DemoOrderDB
 			em.close();
 		}
 	}
+	
+	public static boolean deleteOrder(DemoOrder order)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		
+		try
+		{
+			em.remove(em.merge(order));
+			trans.commit();
+			return true;
+		}
+		catch (Exception e)
+		{
+			System.out.println("A problem occurred while attempting to delete an order: " + e);
+			trans.rollback();
+			return false;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
 }

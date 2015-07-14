@@ -29,6 +29,7 @@ public class DemoCustomerDB
 		}
 		catch (Exception e)
 		{
+			trans.rollback();
 			System.out.println("Error inserting customer: " + e);
 			return 0;
 		}
