@@ -107,4 +107,29 @@ public class DemoCustomerDB
 			em.close();
 		}
 	}
+	
+	public static boolean deleteCustomer(DemoCustomer customer)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		
+		trans.begin();
+		
+		try
+		{
+			em.remove(em.merge(customer));
+			em.flush();
+			trans.commit();
+			return true;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error deleting customer: " + e);
+			return false;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
 }
