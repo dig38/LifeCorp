@@ -19,11 +19,10 @@ public class AdminCustomerList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public AdminCustomerList() {
         super();
-        // TODO Auto-generated constructor stub
-    }
+    }//END Construct
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
-	}
+	}//END Get
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -37,7 +36,5 @@ public class AdminCustomerList extends HttpServlet {
 			em.close();
 			getServletContext().getRequestDispatcher("/adminCustomerList.jsp").forward(request, response);
 		}
-		
-	}
-
-}
+	}//END Post
+}//END AdminCustomerList

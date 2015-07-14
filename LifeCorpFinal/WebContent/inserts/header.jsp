@@ -7,24 +7,32 @@
 						<span class="sr-only">Toggle navigation</span>
 					</button>
 					<a class="navbar-brand" href="index.jsp">LifeCorp</a>
-				</div>	
-								
-					<div id="navbar" class="collapse navbar-collapse">
-						<ul class="nav navbar-nav">
+				</div>		
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
 						<c:if test="${isAdmin == null || isAdmin == false}">
 							<li class="active"><a href="index.jsp">Home</a></li>
 						</c:if>
+						
 						<c:if test="${isAdmin == true}">
 							<li class="active"><a href="admin.jsp">Admin Home</a></li>
 						</c:if>
-							<c:if test="${customer != null && isAdmin != true}">
-								<li><a href="/OrderHistory">Order History</a></li>
-							</c:if>
-							<c:if test="${customer == null || isAdmin == null}">
+						
+						<c:if test="${customer != null && isAdmin != true}">
+							<li><a href="/OrderHistory">Order History</a></li>
+						</c:if>
+						
+						<c:choose>
+							<c:when test="${customer == null && isAdmin == null}">
 								<li><a href="/login.jsp">Login</a></li>
-							</c:if>
-						</ul>
-					</div><!--/.nav-collapse -->	
+							</c:when>
+								
+							<c:otherwise>
+								<li><a href="/login.jsp">Log Out</a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div><!--/.nav-collapse -->	
 			</div>
 		</nav>
 		<br />

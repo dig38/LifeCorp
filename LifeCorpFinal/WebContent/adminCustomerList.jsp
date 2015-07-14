@@ -1,12 +1,14 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 	<c:import url="/inserts/head.jsp" />
 <body>
 	<c:import url="/inserts/header.jsp" />
 	<div class="container">
-	<h1>Customer List</h1>
-	<table>
+	
+	<h1>Admin: Customer List</h1>
+	<table class="table table-striped">
 		<tr>
 			<th>Customer ID</th>
 			<th>Customer Name</th>
@@ -16,12 +18,13 @@
 		</tr>
 		<c:forEach var="Cust" items="${custList}">
 			<tr>
-				<th>${Cust.customerId}</th>
-				<th>${Cust.custFirstName} ${Cust.custLastName}</th>
-				<th>${Cust.custState}</th>
-				<th>${Cust.creditLimit}</th>
-				<th>${Cust.custEmail}</th>
-			</tr> 
+				<th><c:out value="${Cust.customerId}"/></th>
+				<c:url value="AdminCustomerOrderHistory" var="myURL">	<c:param name="id" value="${Cust.customerId}" />	</c:url>
+				<th><a href="${myURL}"><c:out value="${Cust.custFirstName} ${Cust.custLastName}"/></a></th>
+				<th><c:out value="${Cust.custState}"/></th>
+				<th><fmt:formatNumber  type="currency" value="${Cust.creditLimit}"/></th>
+				<th><c:out value="${Cust.custEmail}"/></th>
+			</tr>
 		</c:forEach>
 	</table>
 	<c:import url="/inserts/footer.jsp" />
@@ -29,6 +32,5 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
 </body>
 </html>

@@ -20,7 +20,7 @@ public class AdminOrdersList extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
-	}
+	}//END Get
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -33,5 +33,5 @@ public class AdminOrdersList extends HttpServlet {
 			em.close();
 			getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);
 		}
-	}
+	}//END Post
 }//END AdminOrdersList
