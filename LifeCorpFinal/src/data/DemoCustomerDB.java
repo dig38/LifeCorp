@@ -12,22 +12,19 @@ public class DemoCustomerDB
 {
 	public static long insertCustomerReturnId(DemoCustomer customer)
 	{
+		long customerId = 0;
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		long customerId = 0;
-		trans.begin();
 		
 		try
 		{
-			
+			trans.begin();
 			em.persist(customer);
 			em.flush();
-			System.out.println(customer.getCustomerId());
-			trans.commit();
 			customerId = customer.getCustomerId();
-			System.out.println(customer.getCustLastName());
+			trans.commit();
 			
-			// patch to correct that customer ID returned from method above is erroneous
+			// patch to correct that customer ID returned from method above is errone
 			return getMaxCustomerId();
 		}
 		catch (Exception e)
