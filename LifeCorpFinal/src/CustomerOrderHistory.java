@@ -45,7 +45,7 @@ public class CustomerOrderHistory extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		DemoCustomer customer =  (DemoCustomer)session.getAttribute("customer");
-	
+		
 		List<DemoOrder> orders = customer.getDemoOrders();
 		
 		request.setAttribute("allOrders", orders);

@@ -18,17 +18,19 @@
 							<li class="active"><a href="admin.jsp">Admin Home</a></li>
 						</c:if>
 						
-						<c:if test="${customer != null && isAdmin != true}">
-							<li><a href="/OrderHistory">Order History</a></li>
+						<c:if test="${customer != null}">
+							<c:if test="${isAdmin == null || isAdmin == false}">
+								<li><a href="CustomerOrderHistory">Order History</a></li>
+							</c:if>
 						</c:if>
 						
 						<c:choose>
-							<c:when test="${customer == null && isAdmin == null}">
-								<li><a href="/login.jsp">Login</a></li>
+							<c:when test="${session.customer != null || isAdmin == null}">
+								<li><a href="login.jsp">Log Out</a></li>
 							</c:when>
 								
 							<c:otherwise>
-								<li><a href="/login.jsp">Log Out</a></li>
+								<li><a href="login.jsp">Login</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>

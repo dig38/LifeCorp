@@ -1,19 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<c:import url="/inserts/head.jsp" />
 </head>
- <body BGCOLOR=lightgrey background=sunset.jpg><center>
-<form action="login.jsp">	<BR><BR><BR>
-<h2>Welcome to ....</h2><BR>
-<h1><b>LIFECORP SHOPPING</B></H1> <BR>
-<pre>
-<input type=button value="Product List" onclick="location.href='DisplayProducts'"> <input type=submit value="Login" onclick="location.href='login.jsp'">
-</center>
-<H2><marquee><FONT COLOR=WHITE >Enjoy ONLINE shopping</MARQUEE></H2>
-</form>
- </body>
+<body BGCOLOR=lightgrey background=sunset.jpg>
+
+<c:import url="/inserts/header.jsp" />
+
+<div class="container">
+	
+	<div class="col-sm-3 col-md-3 col-lg-3"></div>
+	
+	<form id="indexform" class="col-md-6" action="login.jsp">
+		<h1>Welcome to ....</h1><br />
+		<h1><strong>LifeCorp Shopping</strong></h1> <br>	
+		<div class="buttons">
+			<div class="col-sm-3 col-md-3 col-lg-3"></div>
+			<input class="btn btn-info col-sm-2 col-md-2 col-lg-2" type="button" value="Product List" onclick="location.href='DisplayProducts'">
+			<div class="col-sm-2 col-md-2 col-lg-2"></div>
+			<input class="btn btn-primary col-sm-2 col-md-2 col-lg-2" type="submit" value="Login" onclick="location.href='login.jsp'">
+			<div class="col-sm-3 col-md-3 col-lg-3"></div>
+		</div>
+	</form>
+	<marquee><h2><font color="black" >Enjoy shopping online.</font></h2></marquee>
+	<div class="col-sm-3 col-md-3 col-lg-3"></div>
+	<c:import url="/inserts/footer.jsp" />
+	
+</div> <!-- /container -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
 </html>

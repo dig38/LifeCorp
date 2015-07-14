@@ -13,12 +13,12 @@
 		<tr>
 			<th>Order Item ID</th>
 			<th>Quantity</th>
-			<th>Unite Price</th>
+			<th>Unit Price</th>
 		</tr>
 		<c:forEach var="ordItem" items="${ordItemList}">
 			<tr>
 				<th><c:out value="${ordItem.orderItemId}"/></th>
-				<th><fmt:formatNumber type="currency" value="${ordItem.quantity}"/></th>
+				<th><c:out value="${ordItem.quantity}"/></th>
 				<th><fmt:formatNumber type="currency" value="${ordItem.unitPrice}"/></th>
 			</tr> 
 		</c:forEach>

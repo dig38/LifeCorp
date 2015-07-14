@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+#indexform {
+    text-align: center;
+}
+
+.buttons input:nth-child(2){
+	text-align:center;
+	padding-right: 1em ;
+}
