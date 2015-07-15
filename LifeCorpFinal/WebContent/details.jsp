@@ -16,22 +16,19 @@
 		</div>
 		<h3>Below are additional details for <c:out value='${productDetails.productName}'/></h3>
 		<form class="form-horizontal">
-		<div class="form-group">
-			<label for="producPhoto" class="col-sm-2 control-label">Photo:</label>
-			<div class="col-sm-10">	
-				<input type="text" name="productAvailability" value="<c:out value='${productDetails.filename}'/>" class="form-control" readonly="readonly" />
-			</div>
+		<div class="col-sm-4">	
+			<img src="img/<c:out value='${productDetails.filename}'/>" alt="<c:out value='${productDetails.productName}'/> Image" style="max-height: 200px;">
 		</div>
 		
-		<div class="form-group">
-			<label for="productName" class="col-sm-2 control-label">Product Name:</label>
-			<div class="col-sm-10">	
-				<input type="text" name="productName" value="<c:out value='${productDetails.productName}'/>" class="form-control" readonly="readonly" />
-			</div>
+		
+		<div class="form-group col-sm-8">
+			<h3 class="col-sm-9">	<c:out value='${productDetails.productName}'/></h3>
 		</div>
 		
+		<div class="col-sm-12"></div>
+		
 		<div class="form-group">
-			<label for="productCategory" class="col-sm-2 control-label">Product Category:</label>
+			<label for="productCategory" class="col-sm-2 control-label">Category:</label>
 			<div class="col-sm-10">	
 				<input type="text" name="productCategory" value="<c:out value='${productDetails.category}'/>" class="form-control" readonly="readonly" />
 			</div>
