@@ -32,7 +32,7 @@
 			    </tr>
 		    <c:forEach var="p" items="${products}">
 			    <tr>
-			        <td>"<c:out value='${p.productName}'/>"</td>
+			        <td><c:out value='${p.productName}'/></td>
 			        <td class="right"><fmt:formatNumber value="${p.listPrice}" type="currency"/></td>
 			        
 			        <td><form action="Details" method="post">
