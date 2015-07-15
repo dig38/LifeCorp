@@ -2,6 +2,10 @@ package dataTest;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,5 +140,91 @@ public class DemoOrderDBTest
 		}
 	}
 	
+	@Test
+	public void testAddCartOrderItemQuantity()
+	{
+		DemoCustomer dulles = DemoCustomerDB.getCustomerById((long) 3);
+		List<DemoOrder> orders = dulles.getDemoOrders();
+		DemoOrder order = orders.get(0);
+		List<DemoOrderItem> items = orders.get(0).getDemoOrderItems();
+		DemoOrderItem item = items.get(0);
+		
+		// use deep clone to create independent object for test
+		DemoOrderItem testItem = (DemoOrderItem) deepClone(item);
+		BigDecimal originalQuantity = item.getQuantity();
+		testItem.setQuantity(new BigDecimal(5));
+		
+		DemoOrderItem outItem = order.addCartOrderItem(testItem);
+		BigDecimal outputItemQuantity = outItem.getQuantity();
+		boolean isChanged = !outputItemQuantity.equals(originalQuantity);
+		boolean isEqualNewQuantity = testItem.getQuantity().equals(new BigDecimal(5));
+		
+		try
+		{
+			assertTrue(isChanged && isEqualNewQuantity);
+		}
+		catch (Exception e)
+		{
+			fail("A problem occurred setting item quanity in ddCartOrderItem method: " + e);
+		}
+		
+	}
+	
+	@Test
+	public void testAddCartOrderItemAddToItemList()
+	{
+		int originalLength = 0;
+		int finalLength = 0;
+		DemoCustomer dulles = DemoCustomerDB.getCustomerById((long) 3);
+		List<DemoOrder> orders = dulles.getDemoOrders();
+		DemoOrder order = orders.get(0);
+		List<DemoOrderItem> items = orders.get(0).getDemoOrderItems();
+		
+		// capture original number of order items for later comparison
+		originalLength = items.size();
+		
+		// get a random item as a template to modify product object
+		DemoOrderItem item = items.get(0);
+		
+		// get a product not in current item list
+		DemoProductInfo newProduct = DemoProductInfoDB.getProductById((long)10);
+		
+		// use deep clone to create independent object for test
+		DemoOrderItem testItem = (DemoOrderItem) deepClone(item);
+	
+		// substitute new product item for original to force an add to item list
+		testItem.setDemoProductInfo(newProduct);
+		
+		// execute the method under test to add the item
+		order.addCartOrderItem(testItem);
+		
+		finalLength = order.getDemoOrderItems().size();
+		
+		try
+		{
+			assertTrue (finalLength - originalLength == 1);
+		}
+		catch (Exception e)
+		{
+			fail("A problem occurred adding an item in ddCartOrderItem method: " + e);
+		}
+		
+	}
+	
+	 public static Object deepClone(Object object) 
+	 {
+		   try {
+		     ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		     ObjectOutputStream oos = new ObjectOutputStream(baos);
+		     oos.writeObject(object);
+		     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		     ObjectInputStream ois = new ObjectInputStream(bais);
+		     return ois.readObject();
+		   }
+		   catch (Exception e) {
+		     e.printStackTrace();
+		     return null;
+		   }
+	 }
 
 }

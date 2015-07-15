@@ -119,7 +119,8 @@ public class DemoOrder implements Serializable {
             {
             	orderItem.setQuantity(quantity);
                 // orderItem.setOrder(this);   ???
-            	return item;
+            	// return item;  original line - really want to return the updated item per next line
+            	return orderItem;
             }
         }
         items.add(item);
