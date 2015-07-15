@@ -1,11 +1,14 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import model.DemoCustomer;
+import model.DemoOrder;
 import myTools.DBUtil;
 
 public class DemoCustomerDB 
@@ -161,5 +164,32 @@ public class DemoCustomerDB
 		}
 		
 		return customer.getCustomerId();
+	}
+	
+	
+	public static List<DemoCustomer> getAllDemoCustomers()
+	{
+		List<DemoCustomer> demoCustomers = null;
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "SELECT d FROM DemoCustomer d";
+		
+		TypedQuery<DemoCustomer> q = em.createQuery(qString, DemoCustomer.class);
+		
+		try
+		{
+			demoCustomers = q.getResultList();
+			if (demoCustomers == null || demoCustomers.isEmpty())
+				demoCustomers = null;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error occurred retrieving all DemoCustomers: " + e);
+		}
+		finally
+		{
+			em.clear();
+		}
+		
+		return demoCustomers;
 	}
 }

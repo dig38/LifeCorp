@@ -3,12 +3,15 @@ package dataTest;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import model.DemoCustomer;
+import model.DemoOrder;
 
 import org.junit.Test;
 
 import data.DemoCustomerDB;
+import data.DemoOrderDB;
 
 public class DemoCustomerDBTest
 {
@@ -140,6 +143,22 @@ public class DemoCustomerDBTest
 		catch (Exception e)
 		{
 			fail("Delete Customer method failed: " + e);
+		}
+	}
+	
+	@Test
+	public void testGetAllDemoCustomers()
+	{
+		List<DemoCustomer> demoCustomers = DemoCustomerDB.getAllDemoCustomers();
+		boolean isDemoCustomer = (demoCustomers.get(1).getClass().equals(DemoCustomer.class));
+		
+		try
+		{
+			assertTrue((demoCustomers.size() > 0) && isDemoCustomer);
+		}
+		catch (Exception e)
+		{
+			fail("A problem occurred while attempting retrieve all DemoOrders: " + e);
 		}
 	}
 }
