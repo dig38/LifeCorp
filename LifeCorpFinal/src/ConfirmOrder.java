@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import model.DemoCustomer;
 import model.DemoOrder;
+import data.DemoCustomerDB;
 import data.DemoOrderDB;
 
 
@@ -55,7 +56,20 @@ public class ConfirmOrder extends HttpServlet {
 		
 		orderId = DemoOrderDB.insertOrderReturnId(order);
 		
-		System.out.println("The order number is: " + orderId);
+		if (orderId > 1)	// in case of success, send order number, update customer data, and set in session
+		{
+			request.setAttribute("orderId", orderId);
+			session.removeAttribute("order");
+			DemoCustomer customer = (DemoCustomer)session.getAttribute("customer");
+			long customerId = customer.getCustomerId();
+			DemoCustomer updatedCustomer = DemoCustomerDB.getCustomerById(customerId);
+			session.setAttribute("customer", updatedCustomer);
+		}
+		else
+		{
+			String message = "There was a problem placing your order please try again later or call our customer care center.";
+			request.setAttribute("message", message);
+		}
 	
 		request.setAttribute("orderId", orderId);
 		

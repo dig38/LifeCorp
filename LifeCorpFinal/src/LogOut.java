@@ -28,9 +28,10 @@ public class LogOut extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("order", null);
-		session.setAttribute("isAdmin", null);
-		session.setAttribute("customer", null);
+		session.removeAttribute("order");
+		session.removeAttribute("isAdmin");
+		session.removeAttribute("customer");
+		
 				
 		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}//END Post
