@@ -120,5 +120,20 @@ public class DemoOrderDBTest
 		}
 	}
 	
+	@Test
+	public void testGetAllDemoOrders()
+	{
+		List<DemoOrder> demoOrders = DemoOrderDB.getAllDemoOrders();
+		
+		try
+		{
+			assertTrue(demoOrders.size() > 0);
+		}
+		catch (Exception e)
+		{
+			fail("A problem occurred while attempting retrieve all DemoOrders: " + e);
+		}
+	}
+	
 
 }

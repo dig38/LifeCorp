@@ -2,9 +2,11 @@ package data;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import model.DemoOrder;
 import model.DemoOrderItem;
@@ -173,5 +175,31 @@ public class DemoOrderDB
 		{
 			em.close();
 		}
+	}
+	
+	public static List<DemoOrder> getAllDemoOrders()
+	{
+		List<DemoOrder> demoOrders = null;
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "SELECT d FROM DemoCustomer d";
+		
+		TypedQuery<DemoOrder> q = em.createQuery(qString, DemoOrder.class);
+		
+		try
+		{
+			demoOrders = q.getResultList();
+			if (demoOrders == null || demoOrders.isEmpty())
+				demoOrders = null;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error occurred retrieving all DemoOrders: " + e);
+		}
+		finally
+		{
+			em.clear();
+		}
+		
+		return demoOrders;
 	}
 }
