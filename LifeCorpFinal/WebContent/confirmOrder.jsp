@@ -84,6 +84,9 @@
 							<input type="submit" value="Place Order" class="btn btn-default col-sm-2" />
 					</td>
 				</tr>
+				
+				<tr><td class="col-sm-2">&nbsp;</td></tr>
+				
 				<tr>
 					<td class="col-sm-2">
 						<a href="orderCart.jsp" class="btn btn-default col-sm-2">Adjust Order</a>
