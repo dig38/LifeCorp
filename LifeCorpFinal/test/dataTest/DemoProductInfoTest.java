@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.DemoCustomer;
 import model.DemoProductInfo;
 
 import org.junit.Test;
@@ -20,10 +21,12 @@ public class DemoProductInfoTest
 	{
 		String category = "Mens";
 		List<DemoProductInfo> products = DemoProductInfoDB.getProductsByCategory(category);
+		boolean isDemoProduct = (products.get(1).getClass().equals(DemoProductInfo.class));
+		boolean isCategoryCorrect = (products.get(1).getCategory().equals("Mens"));
 		
 		try
 		{
-			assertEquals(products.size(), 4);
+			assertTrue((products.size() == 4) && isDemoProduct && isCategoryCorrect);
 		}
 		catch (Exception e)
 		{

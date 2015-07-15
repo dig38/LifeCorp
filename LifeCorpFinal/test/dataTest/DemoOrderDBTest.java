@@ -124,10 +124,11 @@ public class DemoOrderDBTest
 	public void testGetAllDemoOrders()
 	{
 		List<DemoOrder> demoOrders = DemoOrderDB.getAllDemoOrders();
+		boolean isDemoOrder = (demoOrders.get(1).getClass().equals(DemoOrder.class));
 		
 		try
 		{
-			assertTrue(demoOrders.size() > 0);
+			assertTrue((demoOrders.size() > 0) && isDemoOrder);
 		}
 		catch (Exception e)
 		{

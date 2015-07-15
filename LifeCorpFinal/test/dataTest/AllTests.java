@@ -6,8 +6,13 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses(
-{ DemoAdminDBTest.class, DemoCustomerDBTest.class, DemoOrderDBTest.class,
-		DemoProductInfoTest.class })
+{ 	DemoAdminDBTest.class, 
+	DemoCustomerDBTest.class, 
+	DemoOrderDBTest.class,
+	DemoProductInfoTest.class 
+})
+
+
 public class AllTests
 {
 
