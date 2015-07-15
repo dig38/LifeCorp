@@ -23,7 +23,7 @@
 		<c:forEach var="History" items="${allOrders}">
 			<tr>
 				<td><a href = 'OrderDetails?orderId=<c:out value='${History.orderId}'/>'><c:out value='${History.orderId}'/></a></td>
-				<td><c:out value='${History.orderTimestamp}'/></td>
+				<td><fmt:formatDate type="date" value="${History.orderTimestamp}" /></td>
 				<td class="right"><fmt:formatNumber value="${History.orderTotal}" type="currency"/></td>	
 			</tr> 	
 		</c:forEach>

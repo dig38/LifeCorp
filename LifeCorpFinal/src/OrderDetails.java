@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,6 +47,8 @@ public class OrderDetails extends HttpServlet {
 		DemoOrder order =  DemoOrderDB.getOrderById(Long.parseLong(orderId));
 		
 		List<DemoOrderItem> items = order.getDemoOrderItems();
+		
+		request.setAttribute("orderTotal", order.getOrderTotal());
 		
 		request.setAttribute("detailedOrder", items);
 		getServletContext().getRequestDispatcher("/orderDetails.jsp").forward(request, response);

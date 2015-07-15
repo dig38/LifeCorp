@@ -24,12 +24,12 @@
 			
 			
 		</tr>
-		<c:forEach var="Ord" items="${detailedOrder}">
+		<c:forEach var="item" items="${detailedOrder}">
 			<tr>
-				<td><c:out value='${Ord.quantity}'/></td>
-				<td><c:out value='${Ord.productName}'/></td>
-				<td class="right"><fmt:formatNumber value="${Ord.demoProductInfo.unitPrice}" type="currency"/></td>
-				<td><c:out value='${Ord.quanity*Ord.unitPrice}'/></td>
+				<td class="right"><c:out value='${item.quantity}'/></td>
+				<td><c:out value='${item.demoProductInfo.productName}'/></td>
+				<td class="right"><fmt:formatNumber value="${item.unitPrice}" type="currency"/></td>
+				<td ><fmt:formatNumber value="${item.quantity * item.unitPrice}" type="currency"/></td>
 				
 			</tr> 	
 		</c:forEach>
@@ -37,7 +37,7 @@
 	<table class="table table-striped">
 			<tr>
 				<th>Total Amount</th>
-				<td><td class="right"><fmt:formatNumber value="${detailedOrder.orderTotal}" type="currency"/></td>
+				<td><td class="right"><fmt:formatNumber value="${orderTotal}" type="currency"/></td>
 			</tr>
 	</table>
 	</div>
