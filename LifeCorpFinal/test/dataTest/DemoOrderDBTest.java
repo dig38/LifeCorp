@@ -206,9 +206,39 @@ public class DemoOrderDBTest
 		}
 		catch (Exception e)
 		{
-			fail("A problem occurred adding an item in ddCartOrderItem method: " + e);
+			fail("A problem occurred adding an item in addCartOrderItem method: " + e);
 		}
 		
+	}
+	
+	public void testRemoveCartOrderItem()
+	{
+		int originalLength = 0;
+		int finalLength = 0;
+		DemoCustomer dulles = DemoCustomerDB.getCustomerById((long) 3);
+		List<DemoOrder> orders = dulles.getDemoOrders();
+		DemoOrder order = orders.get(0);
+		List<DemoOrderItem> items = orders.get(0).getDemoOrderItems();
+		
+		// capture original number of order items for later comparison
+		originalLength = items.size();
+		
+		// get an item from the item list to remove from the order
+		DemoOrderItem item = items.get(0);
+		
+		// call method to remove the order item
+		order.removeCartOrderItem(item);
+		
+		finalLength = order.getDemoOrderItems().size();
+		
+		try
+		{
+			assertTrue (originalLength - finalLength == 1);
+		}
+		catch (Exception e)
+		{
+			fail("A problem occurred deleting an item in removeCartOrderItem method: " + e);
+		}
 	}
 	
 	 public static Object deepClone(Object object) 
