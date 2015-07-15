@@ -181,7 +181,7 @@ public class DemoOrderDB
 	{
 		List<DemoOrder> demoOrders = null;
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "SELECT d FROM DemoCustomer d";
+		String qString = "SELECT d FROM DemoOrder d";
 		
 		TypedQuery<DemoOrder> q = em.createQuery(qString, DemoOrder.class);
 		
