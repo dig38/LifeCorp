@@ -62,6 +62,35 @@ public class DemoCustomerDB
 		}
 	}
 	
+	// Test code to resolve refresh problem on customer object after adding order
+	public static DemoCustomer getRefreshedCustomerById(long customerId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String qString = "SELECT d FROM DemoCustomer d WHERE d.customerId = :customerId";
+		TypedQuery<DemoCustomer> q = em.createQuery(qString, DemoCustomer.class);
+		q.setParameter("customerId", customerId);
+		
+		q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+		
+		List<DemoCustomer> demoCustomers;
+		
+		try
+		{
+			demoCustomers = q.getResultList();
+			return demoCustomers.get(0);
+		}
+		catch (Exception e)
+		{
+			System.out.println("A problem occurred retrieving a customer by Id: " +e);
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	// end test code to resolve refresh problem 
+	
 	public static DemoCustomer getCustomerByLogin(String email, String password)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();

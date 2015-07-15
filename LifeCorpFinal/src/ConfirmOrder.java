@@ -62,7 +62,9 @@ public class ConfirmOrder extends HttpServlet {
 			session.removeAttribute("order");
 			DemoCustomer customer = (DemoCustomer)session.getAttribute("customer");
 			long customerId = customer.getCustomerId();
-			DemoCustomer updatedCustomer = DemoCustomerDB.getCustomerById(customerId);
+			
+			// Use special class below to refresh EntityManager before reading DemoCustomer
+			DemoCustomer updatedCustomer = DemoCustomerDB.getRefreshedCustomerById(customerId);
 			session.setAttribute("customer", updatedCustomer);
 		}
 		else
