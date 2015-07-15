@@ -31,6 +31,7 @@ public class OrderDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request,response);
 		
 	}
 
@@ -40,12 +41,13 @@ public class OrderDetails extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String orderId = request.getParameter("orderId");
+		System.out.println(orderId);
 		
 		DemoOrder order =  DemoOrderDB.getOrderById(Long.parseLong(orderId));
 		
 		List<DemoOrderItem> items = order.getDemoOrderItems();
 		
-		request.setAttribute("detailedOrder", order);
+		request.setAttribute("detailedOrder", items);
 		getServletContext().getRequestDispatcher("/orderDetails.jsp").forward(request, response);
 		
 		

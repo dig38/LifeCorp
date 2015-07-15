@@ -26,9 +26,9 @@
 		</tr>
 		<c:forEach var="Ord" items="${detailedOrder}">
 			<tr>
-				<td><c:out value='${Ord.quanity}'/></td>
+				<td><c:out value='${Ord.quantity}'/></td>
 				<td><c:out value='${Ord.productName}'/></td>
-				<td class="right"><fmt:formatNumber value="${Ord.unitPrice}" type="currency"/></td>
+				<td class="right"><fmt:formatNumber value="${Ord.demoProductInfo.unitPrice}" type="currency"/></td>
 				<td><c:out value='${Ord.quanity*Ord.unitPrice}'/></td>
 				
 			</tr> 	
