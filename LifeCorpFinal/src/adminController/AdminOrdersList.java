@@ -2,6 +2,7 @@ package adminController;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import data.DemoOrderDB;
 import model.DemoOrder;
 import myTools.DBUtil;
 
@@ -26,6 +29,7 @@ public class AdminOrdersList extends HttpServlet {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try{
+			DemoOrderDB.getAllDemoOrders();
 			@SuppressWarnings("unchecked")
 				List<DemoOrder> ordList = (List<DemoOrder>) em.createNamedQuery("DemoOrder.findAll").getResultList();
 			request.setAttribute("ordList", ordList);

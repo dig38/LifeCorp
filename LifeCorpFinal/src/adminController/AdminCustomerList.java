@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.DemoCustomerDB;
 import model.DemoCustomer;
 import myTools.DBUtil;
 
@@ -28,6 +29,8 @@ public class AdminCustomerList extends HttpServlet {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try{
+			DemoCustomerDB.getAllDemoCustomers();
+			
 			@SuppressWarnings("unchecked")
 				List<DemoCustomer> custList = (List<DemoCustomer>) em.createNamedQuery("DemoCustomer.findAll").getResultList();
 			request.setAttribute("custList", custList);
