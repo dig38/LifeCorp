@@ -26,7 +26,7 @@
 						
 						<c:choose>
 							<c:when test="${customer != null || isAdmin == true}">
-								<li><a href="login.jsp">Log Out</a></li>
+								<li><a href="LogOut">Log Out</a></li>
 							</c:when>
 								
 							<c:otherwise>
