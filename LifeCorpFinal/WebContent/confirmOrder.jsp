@@ -14,9 +14,12 @@
 		<div class="jumbotron">
 			<h1>Confirm Order</h1>
 		</div>
+		<h3>Customer Information:</h3>
+		<hr />
+ 
 		<form class="form-horizontal">
+			
 			<fieldset>
-				<legend>Customer Information:</legend>
 				<div class="form-group">
 					<label for="name"  class="col-sm-2 control-label">Customer:</label>
 					<div class="col-sm-10">
@@ -45,9 +48,11 @@
 					</div>
 				</div>
 			</fieldset>
-		</form>
+		</form> 
 		
-		<legend>Order Items:</legend>
+		<h3>Order Items:</h3>
+		<hr />
+		
 		<table  class="table table-striped">
 			<tr>
 				<th>Item Name</th>
@@ -58,28 +63,42 @@
 			<c:forEach var="item" items="${order.demoOrderItems}">
 			<tr>
 				<td><c:out value="${item.demoProductInfo.productName}" /></td>
-				<td class="right"><c:out value="${item.quantity}" /></td>
-				<td class="right"><fmt:formatNumber value="${item.demoProductInfo.listPrice}" type="currency"/></td>
-				<td class="right"><fmt:formatNumber value="${item.demoProductInfo.listPrice * item.quantity}" type="currency"/>
+				<td><c:out value="${item.quantity}" /></td>
+				<td><fmt:formatNumber value="${item.demoProductInfo.listPrice}" type="currency"/></td>
+				<td><fmt:formatNumber value="${item.demoProductInfo.listPrice * item.quantity}" type="currency"/></td>
 			</tr>		
 			</c:forEach>
 			<tr>
 				<td></td>
 				<td></td>
-				<td class="right">Order Total:</td>
-				<td class="right"><fmt:formatNumber value="${order.orderTotal}" type="currency"/>
+				<td>Order Total:</td>
+				<td><fmt:formatNumber value="${order.orderTotal}" type="currency"/></td>
 			</tr>
 		</table>
-
-		<form action="ConfirmOrder" method="post" class="form-horizontal">
-			<input type="submit" value="Place Order" class="buttonFont" />
+		
+		 	
+		<form action="ConfirmOrder" method="post">
+			<table class="form-group">
+				<tr>
+					<td class="col-sm-2">
+							<input type="submit" value="Place Order" class="btn btn-default col-sm-2" />
+					</td>
+				</tr>
+				<tr>
+					<td class="col-sm-2">
+						<a href="orderCart.jsp" class="btn btn-default col-sm-2">Adjust Order</a>
+					</td>
+				</tr>
+			</table>
 		</form>
-		<a class="floatLeft" href="displayProducts.jsp"><button class="btn btn-default">Adjust Order</button></a>		
-		<c:import url="/inserts/footer.jsp" />
+		
+			
+		
+		
+			
+		
+	
+	<c:import url="/inserts/footer.jsp" />	
 	</div> <!-- /container -->
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
 </body>
 </html>

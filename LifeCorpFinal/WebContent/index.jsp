@@ -18,11 +18,10 @@
 		<h1><strong>LifeCorp Shopping</strong></h1> <br>	
 		<div class="buttons">
 			<div class="col-sm-2 col-md-2 col-lg-2"></div>
-			<div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3">
+			<div class="form-group form-group-sm col-sm-4 col-md-4 col-lg-4">
 				<input class="btn btn-info col-sm-12 col-md-12 col-lg-12" type="button" value="Product List" onclick="location.href='DisplayProducts'">
 			</div>
-			<div class="col-sm-2 col-md-2 col-lg-2"></div>
-			<div class="form-group form-group-sm col-sm-3 col-md-3 col-lg-3">
+			<div class="form-group form-group-sm col-sm-4 col-md-4 col-lg-4">
 				<input class="btn btn-primary col-sm-12 col-md-12 col-lg-12" type="submit" value="Login" onclick="location.href='login.jsp'">
 			</div>
 			<div class="col-sm-2 col-md-2 col-lg-2"></div>
