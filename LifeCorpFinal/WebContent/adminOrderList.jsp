@@ -20,26 +20,27 @@
 	</h1>
 	<table class="table table-striped">
 		<tr>
-			<th>Order ID</th>
+			<th><span class="pull-right" >Order ID</span></th>
+			<th></th>
 			<c:if test="${requestScope.single != true}">
 				<th>Customer Name</th>
 			</c:if>
-			<th>Order Total</th>
-			<th>Order Timestamp</th>
-			<th>Order Total</th>
+			<th><span class="pull-right">Order Total</span></th>
+			<th><span class="pull-right">Order Timestamp</span></th>
+			<th><span class="pull-right">Order Total</span></th>
 		</tr>
 		<c:forEach var="ord" items="${ordList}">
 			<tr>
 				<c:url value="AdminCustomerOrderDetails" var="myURL">	<c:param name="id" value="${ord.orderId}" />	</c:url>
-				<th><a href="${myURL}"><c:out value="${ord.orderId}"/></a></th>
-				
+				<td><span class="pull-right" ><a href="${myURL}"><c:out value="${ord.orderId}"/></a></span></td>
+				<td></td>
 				<c:if test="${requestScope.single != true}">
-					<th><c:out value="${ord.demoCustomer.custFirstName} ${ord.demoCustomer.custLastName}"/></th>
+					<td><c:out value="${ord.demoCustomer.custFirstName} ${ord.demoCustomer.custLastName}"/></td>
 				</c:if>
 				
-				<th><c:out value="${ord.orderId}"/></th>
-				<th><fmt:formatDate value="${ord.orderTimestamp}" pattern="MM/dd/yyyy, HH:mm"/></th>
-				<th><fmt:formatNumber type="currency" value="${ord.orderTotal}"/></th>
+				<td><span class="pull-right" ><c:out value="${ord.orderId}"/></span></td>
+				<td><span class="pull-right" ><fmt:formatDate value="${ord.orderTimestamp}" pattern="MMM dd, yyyy"/></span></td>
+				<td><span class="pull-right" ><fmt:formatNumber type="currency" value="${ord.orderTotal}"/></span></td>
 			</tr> 
 		</c:forEach>
 	

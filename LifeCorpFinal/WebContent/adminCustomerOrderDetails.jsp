@@ -11,23 +11,28 @@
 	<!-- <th>${ordItem.demoOrder.demoCustomer.custFirstName} ${ordItem.demoOrder.demoCustomer.custLastName}</th>-->
 	<table class="table table-striped">
 		<tr>
-			<th>Order Item ID</th>
-			<th>Quantity</th>
-			<th>Unit Price</th>
+			<th class="col-sm-1"><span class="pull-right" >Order Item ID</span></th>
+			<th class="col-sm-3"><span class="pull-right" >Quantity</span></th>
+			<th class="col-sm-3"><span class="pull-right" >Unit Price</span></th>
+			<th class="col-sm-1"></th>
 		</tr>
 		<c:forEach var="ordItem" items="${ordItemList}">
 			<tr>
-				<th><c:out value="${ordItem.orderItemId}"/></th>
-				<th><c:out value="${ordItem.quantity}"/></th>
-				<th><fmt:formatNumber type="currency" value="${ordItem.unitPrice}"/></th>
+				<td><span class="pull-right" ><c:out value="${ordItem.orderItemId}"/></span></td>
+				<td><span class="pull-right" ><c:out value="${ordItem.quantity}"/></span></td>
+				<td><span class="pull-right" ><fmt:formatNumber type="currency" value="${ordItem.unitPrice}"/></span></td>
+				<td></td>
 			</tr> 
 		</c:forEach>
+		<tr>
+			<td></td>
+			<td><span class="pull-right" ><strong>Order Total</strong></span></td>
+			<td class="col-sm-1"><span class="pull-right" ><fmt:formatNumber type="currency" value="${custOrd.orderTotal}"/></span></td>
+			<td></td>
+			
+		</tr>
 	</table>
-	<table class="table table-striped">
-	<tr>
-	<th class="col-md-8">Order Total</th><th class="col-md-4"><fmt:formatNumber type="currency" value="${custOrd.orderTotal}"/></th>
-	</tr>
-	</table>
+	
 	<c:import url="/inserts/footer.jsp" />
 	</div> <!-- /container -->
 	

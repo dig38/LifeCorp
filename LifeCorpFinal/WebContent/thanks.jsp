@@ -8,11 +8,17 @@
 <body>
 	<c:import url="/inserts/header.jsp" />
 	<div class="container">
-		<c:out value="${message}" />
 		<div class="jumbotron">
-			<h1>Thank you for placing your order!</h1>
-		</div>		
-		<h3>Your order number is: <c:out value="${orderId}"/></h3>
+			<h1>Order Confirmation</h1>
+		</div>
+		<c:choose>
+			<c:when test="${message != null}">
+				<div class="alert"><c:out value="${message}"/></div>
+			</c:when>
+			<c:otherwise>
+				<h3>Your order number is: <c:out value="${orderId}"/></h3>						
+			</c:otherwise>
+		</c:choose>
 		<c:import url="/inserts/footer.jsp" />
 	</div> <!-- /container -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
