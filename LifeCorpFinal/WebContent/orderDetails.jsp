@@ -19,10 +19,6 @@
 			<th>Product Name</th>
 			<th>Unit Price</th>
 			<th>Total Price</th>
-			
-			
-			
-			
 		</tr>
 		<c:forEach var="item" items="${detailedOrder}">
 			<tr>
