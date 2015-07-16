@@ -116,6 +116,7 @@ public class Login extends HttpServlet {
 			if (testExistCustomer == null)	// test for no existing customer with same email to preclude duplicates
 			{
 				custId = DemoCustomerDB.insertCustomerReturnId(customer);
+				customer.setCustomerId(custId); 	// update customerId with returned value
 			}
 			else
 			{
