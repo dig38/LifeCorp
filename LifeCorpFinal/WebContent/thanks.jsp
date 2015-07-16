@@ -13,7 +13,7 @@
 		</div>
 		<c:choose>
 			<c:when test="${message != null}">
-				<div class="alert"><c:out value="${message}"/></div>
+				<div class="alert alert-danger"><c:out value="${message}"/></div>
 			</c:when>
 			<c:otherwise>
 				<h3>Your order number is: <c:out value="${orderId}"/></h3>						
