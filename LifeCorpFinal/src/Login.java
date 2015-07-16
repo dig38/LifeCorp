@@ -151,7 +151,7 @@ public class Login extends HttpServlet {
 					// - send user back to login page
 			{
 				url = "/login.jsp";
-				request.setAttribute("message2", "Problem or account already exists - please try again.");
+				request.setAttribute("message2", "Problem creating account or account already exists - please try again.");
 			}
 		}
 		
