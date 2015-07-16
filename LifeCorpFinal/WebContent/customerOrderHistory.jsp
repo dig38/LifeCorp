@@ -10,25 +10,29 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
 	
-	<div class="container">
-	<h1>Order History</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>Order ID</th>
-			<th>Date</th>
-			<th>Total Amount</th>
-		</tr>
-		<c:forEach var="History" items="${allOrders}">
+	<div class="container content">
+		<h1>Order History</h1>
+		<table class="table table-striped">
 			<tr>
-				<td><a href = 'OrderDetails?orderId=<c:out value='${History.orderId}'/>'><c:out value='${History.orderId}'/></a></td>
-				<td><fmt:formatDate type="date" value="${History.orderTimestamp}" /></td>
-				<td class="right"><fmt:formatNumber value="${History.orderTotal}" type="currency"/></td>	
-			</tr> 	
-		</c:forEach>
-	</table>
+				<th>Order ID</th>
+				<th>Date</th>
+				<th>Total Amount</th>
+			</tr>
+			<c:forEach var="History" items="${allOrders}">
+				<tr>
+					<td><a href = 'OrderDetails?orderId=<c:out value='${History.orderId}'/>'><c:out value='${History.orderId}'/></a></td>
+					<td><fmt:formatDate type="date" value="${History.orderTimestamp}" /></td>
+					<td class="right"><fmt:formatNumber value="${History.orderTotal}" type="currency"/></td>	
+				</tr> 	
+			</c:forEach>
+		</table>
 	</div>
-
+	
+	<c:import url="/inserts/footer.jsp" />		
+	</div><!-- wrap -->
 </body>
+
 </html>

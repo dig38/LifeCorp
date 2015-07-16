@@ -10,8 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
-	<div class="container">
+	<div class="container content">
 	<h1>Order Details</h1>
 	<table class="table table-striped">
 		<tr>
@@ -40,6 +41,7 @@
 			</tr>
 	</table>
 	</div>
-
+	<c:import url="/inserts/footer.jsp" />
+</div><!-- wrap -->
 </body>
 </html>

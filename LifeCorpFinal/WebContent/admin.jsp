@@ -7,8 +7,9 @@
 <html>
 	<c:import url="/inserts/head.jsp" />
 <body>
+	<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
-	<div class="container">
+	<div class="container content">
 		<h1>Administration Home</h1>
 	
 		<div class="row">
@@ -21,10 +22,9 @@
 				<p><a class="btn btn-primary col-md-3" href="AdminOrderList" role="button">Order List</a></p>
 			</div>
 		</div>
-	
-	
-		<c:import url="/inserts/footer.jsp" />
 	</div> <!-- /container -->
+	<c:import url="/inserts/footer.jsp" />
+	</div><!-- wrap -->
 </body>
 </html>
 </c:if>

@@ -6,9 +6,10 @@
 	<title>Display Products</title>
 </head>
 <body>
+<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
-	<div class="container">
-		${message}
+	<div class="container content">
+		<c:out value="${message}"/>
 		<div class="jumbotron">
 			<h1>User Information</h1>
 		</div><!-- class.jumbotron -->
@@ -170,9 +171,10 @@
 			</fieldset>
 		</form>
   	
-	<c:import url="/inserts/footer.jsp" />
-	</div> <!-- /container -->
 	
+	</div> <!-- /container -->
+	<c:import url="/inserts/footer.jsp" />
+</div><!-- wrap -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- Local script for create account button -->

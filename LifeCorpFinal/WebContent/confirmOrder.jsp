@@ -7,8 +7,9 @@
 	<title>Confirm Order</title>
 	</head>
 <body>
+<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
-	<div class="container">
+	<div class="container content">
 
 	    <c:out value= "${message}" />
 		<div class="jumbotron">
@@ -75,8 +76,6 @@
 				<td><fmt:formatNumber value="${order.orderTotal}" type="currency"/></td>
 			</tr>
 		</table>
-		
-		 	
 		<form action="ConfirmOrder" method="post">
 			<table class="form-group">
 				<tr>
@@ -94,14 +93,8 @@
 				</tr>
 			</table>
 		</form>
-		
-			
-		
-		
-			
-		
-	
-	<c:import url="/inserts/footer.jsp" />	
 	</div> <!-- /container -->
+	<c:import url="/inserts/footer.jsp" />
+</div><!-- wrap -->	
 </body>
 </html>

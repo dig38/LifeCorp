@@ -6,8 +6,9 @@
 <html>
 	<c:import url="/inserts/head.jsp" />
 <body>
+	<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
-	<div class="container">
+	<div class="container content">
 	
 	<h1>Admin: Details of <c:out value="${custOrd.demoCustomer.custFirstName} ${custOrd.demoCustomer.custLastName}"/>'s Order: ID# <c:out value="${custOrd.orderId}"/></h1>
 	<!-- <th>${ordItem.demoOrder.demoCustomer.custFirstName} ${ordItem.demoOrder.demoCustomer.custLastName}</th>-->
@@ -39,10 +40,9 @@
 			<td></td>
 		</tr>
 	</table>
-	
-	<c:import url="/inserts/footer.jsp" />
 	</div> <!-- /container -->
-	
+	<c:import url="/inserts/footer.jsp" />
+	</div><!-- wrap -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	

@@ -6,8 +6,9 @@
 	<title>Confirm Order</title>
 	</head>
 <body>
+<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
-	<div class="container">
+	<div class="container content">
 		<div class="jumbotron">
 			<h1>Order Confirmation</h1>
 		</div>
@@ -19,10 +20,10 @@
 				<h3>Your order number is: <c:out value="${orderId}"/></h3>						
 			</c:otherwise>
 		</c:choose>
-		<c:import url="/inserts/footer.jsp" />
 	</div> <!-- /container -->
+	<c:import url="/inserts/footer.jsp" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
+</div><!-- wrap -->
 </body>
 </html>
