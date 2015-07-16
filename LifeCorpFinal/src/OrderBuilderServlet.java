@@ -49,15 +49,18 @@ public class OrderBuilderServlet extends HttpServlet {
 	{
 		HttpSession session = request.getSession();
     	DemoCustomer customer = (DemoCustomer)session.getAttribute("customer");
-    	// perform action and set URL to a default page - may be changed based on logic below
+    	
+    	// set URL to a default page - may be changed based on logic below
         String url = "/displayProducts.jsp";
 		
-		// get current action from hidden input fields in jsp page(s)
+		// get current action from hidden input fields in orderCart and displayProducts jsp page(s)
 		String action = request.getParameter("action");
 		
         if (action == null) 
         {
-            action = "cart";  // default action in case none specified
+            action = "cart";  	// default action in case none found in session variable
+            					// while this was possible in the Murach approach I believe
+            					// we have declared a specific action for each field
         }
         
         if (action.equals("shop"))	// user wants to continue shopping or add items to order/cart
@@ -71,15 +74,15 @@ public class OrderBuilderServlet extends HttpServlet {
         	String quantityString = request.getParameter("quantity");
         	
         	
-        	// initialize the order variables to enable adding order items
+        	// initialize the order object from session variable to enable adding order items
         	DemoOrder order = (DemoOrder)session.getAttribute("order");
         	
         	// if no order under construction is found, create a new one
         	if(order == null)
         	{
         		order = new DemoOrder();
+        		// initialize the arraylist embedded in the order object - can't add products otherwise
         		order.setDemoOrderItems(new ArrayList<DemoOrderItem>());
-        		// order.setOrderId(0);	// attempt to work around problems with order object connected to database
         	}
         	
         	// if the user enters a negative or invalid quantity on the order page
@@ -111,7 +114,7 @@ public class OrderBuilderServlet extends HttpServlet {
         	
         	if (quantity > 0)
         	{
-        		// special class created in the Order object to enable 
+        		// special helper method created in the Order object to enable 
         		// changing of a quantity for a specified Order/Cart item.
         		// while it appears on the surface to add an order item, in fact
         		// it iterates through the existing order items and merely changes
@@ -122,7 +125,7 @@ public class OrderBuilderServlet extends HttpServlet {
         	}
         	else if (quantity == 0)
         	{
-        		// special class created in the Order object to enable 
+        		// special helper method created in the Order object to enable 
         		// changing of a quantity for a specified Order/Cart item.
         		order.removeCartOrderItem(orderItem);
         		DemoOrderDB.presetOrderTotal(order);	// update the order total based on item deletion

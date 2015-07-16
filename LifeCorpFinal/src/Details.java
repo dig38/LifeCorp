@@ -36,7 +36,7 @@ public class Details extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//requesting for productId
+		// get the productId to enable search for specific DemoProductInfo object
 		String productId = request.getParameter("productId"); 
 		
 		//calling the getProductById method to retrieve the data.

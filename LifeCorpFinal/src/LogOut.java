@@ -21,13 +21,16 @@ public class LogOut extends HttpServlet {
 
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doPost(request, response);
 	}//END Get
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		HttpSession session = request.getSession();
 		
+		// remove session variables following logout to preclude duplicate order or other problems
 		session.removeAttribute("order");
 		session.removeAttribute("isAdmin");
 		session.removeAttribute("customer");

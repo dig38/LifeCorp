@@ -52,7 +52,7 @@ public class DisplayProducts extends HttpServlet {
 		{
 			// start up case or user did not make a selection return all categories
 			
-			// get the entire list of products from database
+			// get the entire list of products from database by setting category to "All"
 			List<DemoProductInfo> allProducts = DemoProductInfoDB.getProductsByCategory("All");	
 			
 			// post entire list to session variable for retrieval in displayProducts screen
@@ -61,10 +61,10 @@ public class DisplayProducts extends HttpServlet {
 		}
 		else
 		{
-			// the user has selected a category so return only those products 
+			// the user has selected a category so return filtered list of products 
 			List<DemoProductInfo> products = DemoProductInfoDB.getProductsByCategory(category);
 			
-			// post entire list to session variable for retrieval in displayProducts screen
+			// post filtered list to session variable for retrieval in displayProducts screen
 			request.setAttribute("products", products);
 			request.setAttribute("productCategory", category);
 		}

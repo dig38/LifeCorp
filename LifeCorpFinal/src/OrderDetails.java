@@ -46,7 +46,7 @@ public class OrderDetails extends HttpServlet {
 		
 		DemoOrder order =  DemoOrderDB.getOrderById(Long.parseLong(orderId));
 		
-		List<DemoOrderItem> items = order.getDemoOrderItems();
+		List<DemoOrderItem> items = order.getDemoOrderItems();	// order details for display on orderDetails.jsp page
 		
 		request.setAttribute("orderTotal", order.getOrderTotal());
 		

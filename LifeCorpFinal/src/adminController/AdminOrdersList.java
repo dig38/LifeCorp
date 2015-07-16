@@ -17,27 +17,35 @@ import model.DemoOrder;
 import myTools.DBUtil;
 
 @WebServlet("/AdminOrderList")
-public class AdminOrdersList extends HttpServlet {
+public class AdminOrdersList extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-    public AdminOrdersList() {
+    
+	public AdminOrdersList() 
+    {
         super();
     }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doPost(request, response);
-	}//END Get
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if((boolean)session.getAttribute("isAdmin") == true)
+		if((boolean)session.getAttribute("isAdmin") == true)	// verify user is a valid admin user
 			AdminOrdersListAction(request, response);
-		else
+		else													// otherwise redirect to 404 error page
 			getServletContext().getRequestDispatcher("/404").forward(request, response);
 		
-	}//END Post
+	}
+	
 	private void AdminOrdersListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<DemoOrder> ordList = DemoOrderDB.getAllDemoOrders();
 		
 		request.setAttribute("ordList", ordList);
 		
 		getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);
-	}//END AdminOrdersListAction
-}//END AdminOrdersList
+	}
+
+}

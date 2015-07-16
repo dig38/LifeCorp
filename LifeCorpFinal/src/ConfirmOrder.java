@@ -64,10 +64,11 @@ public class ConfirmOrder extends HttpServlet {
 			long customerId = customer.getCustomerId();
 			
 			// Use special class below to refresh EntityManager before reading DemoCustomer
+			// expensive to do so user only where needed
 			DemoCustomer updatedCustomer = DemoCustomerDB.getRefreshedCustomerById(customerId);
 			session.setAttribute("customer", updatedCustomer);
 		}
-		else
+		else	// Error occurred in posting order - provide notification to user on thank you page
 		{
 			String message = "There was a problem placing your order please try again later or call our customer care center.";
 			request.setAttribute("message", message);

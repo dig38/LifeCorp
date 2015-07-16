@@ -57,8 +57,8 @@ public class Login extends HttpServlet {
 			String password = request.getParameter("password");
 			boolean isAdmin = false;
 			
-			// first check the DemoAdmin table to see if the existing user exists
-			// as an admin user
+			// first check the DemoAdmin table to see if the credentials
+			// supplied match the admin entry in the DEMO_ADMIN table
 			if(DemoAdminDB.getCustomerByLogin(email, password) != null)	
 			{
 				isAdmin = true;
@@ -72,12 +72,13 @@ public class Login extends HttpServlet {
 			
 			if (customer != null)	// existing customer object returned from login
 			{
-				if (session.getAttribute("order") != null)	// check if order in progress
+				if (session.getAttribute("order") != null)	// check if order build in progress
 				{
 					// order in progress - get existing customer, order, add customer to order
 					// and set URL
 					session.setAttribute("customer", customer);
 					// session.setAttribute("lastFour", "XXXX-XXXX-XXXX-" + customer.getCreditCard().substring(15));
+					// provision for credit card checking if we want to activate the capability
 					session.setAttribute("lastFour", "XXXX-XXXX-XXXX-XXXX");
 					DemoOrder order = (DemoOrder)session.getAttribute("order");
 					order.setDemoCustomer(customer);
@@ -96,7 +97,7 @@ public class Login extends HttpServlet {
 				request.setAttribute("message1", "Password or user email missing/incorrect.");
 			}
 		}
-		else if(action.equals("newCustomer"))	// new customer - get parameters to build new customer
+		else if(action.equals("newCustomer"))	// new customer - get parameters from login.jsp to build new customer
 		{
 			System.out.println("Get new customer details and create customer");
 			DemoCustomer customer = new DemoCustomer();
@@ -113,14 +114,14 @@ public class Login extends HttpServlet {
 			
 			DemoCustomer testExistCustomer = DemoCustomerDB.doesCustomerEmailExist(customer.getCustEmail());
 			
-			if (testExistCustomer == null)	// test for no existing customer with same email to preclude duplicates
+			if (testExistCustomer == null)	// test for user with same email before insertion to preclude duplicates
 			{
 				custId = DemoCustomerDB.insertCustomerReturnId(customer);
 				customer.setCustomerId(custId); 	// update customerId with returned value
 			}
 			else
 			{
-				custId = 0; 	// confirm initialized value indicating duplicate
+				custId = 0; 	// confirm unchanged value initialized above indicating duplicate found
 			}
 			
 			if(custId != 0)	// new customer created without duplication;

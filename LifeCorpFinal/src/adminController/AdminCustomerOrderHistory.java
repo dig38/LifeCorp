@@ -14,22 +14,31 @@ import data.DemoCustomerDB;
 import model.DemoOrder;
 
 @WebServlet("/AdminCustomerOrderHistory")
-public class AdminCustomerOrderHistory extends HttpServlet {
-	private static final long serialVersionUID = 1L;   
-    public AdminCustomerOrderHistory() {
+public class AdminCustomerOrderHistory extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L; 
+	
+    public AdminCustomerOrderHistory() 
+    {
         super();
-    }//END Constructor
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doPost(request, response);
-	}//END Get
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		HttpSession session = request.getSession();
-		if((boolean)session.getAttribute("isAdmin") == true)
+		if((boolean)session.getAttribute("isAdmin") == true)	// verify user is authenticated admin user
 			AdminCustomerOrderHistoryAction(request, response);
-		else
+		else													// otherwise direct to 404 error page
 			getServletContext().getRequestDispatcher("/404").forward(request, response);
-	}//END Post
-	private void AdminCustomerOrderHistoryAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+	
+	private void AdminCustomerOrderHistoryAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		String custId = request.getParameter("id");
 		List<DemoOrder> demoOrd = DemoCustomerDB.getCustomerById(new Long(custId)).getDemoOrders();
 		
@@ -37,5 +46,6 @@ public class AdminCustomerOrderHistory extends HttpServlet {
 		request.setAttribute("ordList", demoOrd);
 		
 		getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);	
-	}//END AdminCustomerOrderHistoryAction
-}//END AdminCustomerOrderHistory
+	}
+
+}

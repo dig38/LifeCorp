@@ -17,26 +17,42 @@ import model.DemoCustomer;
 import myTools.DBUtil;
 
 @WebServlet("/AdminCustomerList")
-public class AdminCustomerList extends HttpServlet {
+public class AdminCustomerList extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-    public AdminCustomerList() {
+    
+	public AdminCustomerList() 
+    {
         super();
-    }//END Construct
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doPost(request, response);
-	}//END Get
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		HttpSession session = request.getSession();
-		if((boolean)session.getAttribute("isAdmin") == true)
-			AdminCustomerListAction(request, response);
+		
+		if((boolean)session.getAttribute("isAdmin") == true)	// check to verify admin user arrived at page
+			AdminCustomerListAction(request, response);			// if so, get the customer list in helper method
+																// below.
+		
 		else
+			// if not an admin user, redirect to the 404 page as user shouldn't get to admin pages
 			getServletContext().getRequestDispatcher("/404").forward(request, response);
-	}//END Post
-	private void AdminCustomerListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+	
+	
+	private void AdminCustomerListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		List<DemoCustomer> custList = DemoCustomerDB.getAllDemoCustomers();			
 		
 		request.setAttribute("custList", custList);
 		
 		getServletContext().getRequestDispatcher("/adminCustomerList.jsp").forward(request, response);
-	}//END AdminCustomerListAction
-}//END AdminCustomerList
+	}
+	
+}
