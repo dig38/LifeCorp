@@ -2,6 +2,10 @@ package dataTest;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -161,4 +165,62 @@ public class DemoCustomerDBTest
 			fail("A problem occurred while attempting retrieve all DemoOrders: " + e);
 		}
 	}
+	
+	
+	@Test
+	public void testGetRefreshedCustomerById()
+	{
+		long customerId = 1;	// set index for customer John Dulles
+		int startNumOrders = 0;
+		int endNumOrders = 0;
+		
+		// get starting state of customer under test
+		DemoCustomer startCustomer = DemoCustomerDB.getCustomerById(customerId);
+		startNumOrders = startCustomer.getDemoOrders().size();
+		
+		// generate a compatible order to add for this test customer
+		DemoOrder testOrderToAdd = (DemoOrder) deepClone(startCustomer.getDemoOrders().get(0));	
+		testOrderToAdd.setOrderId(0);
+		
+		// add the order
+		long orderId = DemoOrderDB.insertOrderReturnId(testOrderToAdd);
+		
+		// get what should be an updated version of same customer with additional order
+		DemoCustomer endCustomer = DemoCustomerDB.getRefreshedCustomerById(customerId);
+		
+		endNumOrders = endCustomer.getDemoOrders().size();
+		
+		try
+		{
+			assertTrue(endNumOrders - startNumOrders == 1);
+			System.out.println("Debug record in assert portion of testGetRefreshedCustomerById()");
+		}
+		catch (Exception e)
+		{
+			fail("Customer from testGetRefreshedCustomerById() not refreshed as expected: " + e);
+		}
+		
+		// clean up the database by removing the added test order
+		finally
+		{
+			boolean isDeleted = DemoOrderDB.deleteOrder(DemoOrderDB.getOrderById(orderId));
+		}
+		
+	}
+	
+	public static Object deepClone(Object object) 
+	 {
+		   try {
+		     ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		     ObjectOutputStream oos = new ObjectOutputStream(baos);
+		     oos.writeObject(object);
+		     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		     ObjectInputStream ois = new ObjectInputStream(bais);
+		     return ois.readObject();
+		   }
+		   catch (Exception e) {
+		     e.printStackTrace();
+		     return null;
+		   }
+	 }
 }
