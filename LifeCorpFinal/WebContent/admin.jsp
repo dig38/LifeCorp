@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="javax.servlet.ServletContext" %>
 <%@page import="javax.servlet.RequestDispatcher" %>
-<c:if test="${isAdmin != true}"><jsp:forward page="index.jsp"/></c:if>
+<c:if test="${isAdmin != true}"><jsp:forward page="404"/></c:if>
 <c:if test="${isAdmin == true}"> 
 <html>
 	<c:import url="/inserts/head.jsp" />

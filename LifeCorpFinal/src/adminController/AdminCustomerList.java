@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import data.DemoCustomerDB;
 import model.DemoCustomer;
@@ -25,6 +26,13 @@ public class AdminCustomerList extends HttpServlet {
 		doPost(request, response);
 	}//END Get
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if((boolean)session.getAttribute("isAdmin") == true)
+			AdminCustomerListAction(request, response);
+		else
+			getServletContext().getRequestDispatcher("/404").forward(request, response);
+	}//END Post
+	private void AdminCustomerListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
@@ -39,5 +47,5 @@ public class AdminCustomerList extends HttpServlet {
 			em.close();
 			getServletContext().getRequestDispatcher("/adminCustomerList.jsp").forward(request, response);
 		}
-	}//END Post
+	}//END AdminCustomerListAction
 }//END AdminCustomerList
