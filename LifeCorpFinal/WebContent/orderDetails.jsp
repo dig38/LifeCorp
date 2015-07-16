@@ -19,8 +19,8 @@
 			<th>Product Name</th>
 			<th>Unit Price</th>
 			<th>Total Price</th>
-			<th>&nbsp;</th>
-			<th>&nbsp;</th>
+			
+			
 			
 			
 		</tr>
@@ -31,13 +31,16 @@
 				<td class="right"><fmt:formatNumber value="${item.unitPrice}" type="currency"/></td>
 				<td ><fmt:formatNumber value="${item.quantity * item.unitPrice}" type="currency"/></td>
 				
+				
 			</tr> 	
 		</c:forEach>
 	</table>
 	<table class="table table-striped">
 			<tr>
-				<th>Total Amount</th>
-				<td><td class="right"><fmt:formatNumber value="${orderTotal}" type="currency"/></td>
+				<td class="col-sm-1">&nbsp;</td>
+				<td class="col-sm-1">&nbsp;</td>
+				<td class="col-sm-1 right"><strong>Total Amount</strong></td>
+				<td class="col-sm-1 right"><fmt:formatNumber value="${orderTotal}" type="currency"/></td>
 			</tr>
 	</table>
 	</div>
