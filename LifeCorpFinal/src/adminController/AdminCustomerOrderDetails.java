@@ -30,15 +30,11 @@ public class AdminCustomerOrderDetails extends HttpServlet {
 	}//END Post
 	private void AdminCustomerOrderDetailsAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ordId = request.getParameter("id");
-		DemoOrder custOrd = null;
-		try{	
-			custOrd = DemoOrderDB.getOrderById((new Long(ordId)));			
-		}catch(Exception e){
-			System.out.println(e);
-		}finally{
-			request.setAttribute("custOrd", custOrd);
-			request.setAttribute("ordItemList", custOrd.getDemoOrderItems());
-			getServletContext().getRequestDispatcher("/adminCustomerOrderDetails.jsp").forward(request, response);
-		}
+		DemoOrder custOrd = DemoOrderDB.getOrderById((new Long(ordId)));			
+		
+		request.setAttribute("custOrd", custOrd);
+		request.setAttribute("ordItemList", custOrd.getDemoOrderItems());
+		
+		getServletContext().getRequestDispatcher("/adminCustomerOrderDetails.jsp").forward(request, response);
 	}//END AdminCustomerOrderDetailsAction
 }//END AdminCustomerOrderDetail

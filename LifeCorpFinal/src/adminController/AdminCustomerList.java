@@ -33,19 +33,10 @@ public class AdminCustomerList extends HttpServlet {
 			getServletContext().getRequestDispatcher("/404").forward(request, response);
 	}//END Post
 	private void AdminCustomerListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		EntityTransaction trans = em.getTransaction();
-		trans.begin();
-		try{
-			DemoCustomerDB.getAllDemoCustomers();
-			
-			@SuppressWarnings("unchecked")
-				List<DemoCustomer> custList = (List<DemoCustomer>) em.createNamedQuery("DemoCustomer.findAll").getResultList();
-			request.setAttribute("custList", custList);
-		}finally{
-			trans.commit();
-			em.close();
-			getServletContext().getRequestDispatcher("/adminCustomerList.jsp").forward(request, response);
-		}
+		List<DemoCustomer> custList = DemoCustomerDB.getAllDemoCustomers();			
+		
+		request.setAttribute("custList", custList);
+		
+		getServletContext().getRequestDispatcher("/adminCustomerList.jsp").forward(request, response);
 	}//END AdminCustomerListAction
 }//END AdminCustomerList

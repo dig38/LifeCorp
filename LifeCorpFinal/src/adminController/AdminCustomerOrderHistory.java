@@ -30,17 +30,12 @@ public class AdminCustomerOrderHistory extends HttpServlet {
 			getServletContext().getRequestDispatcher("/404").forward(request, response);
 	}//END Post
 	private void AdminCustomerOrderHistoryAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String custId = request.getParameter("id");
-		List<DemoOrder> demoOrd = null;
-		try{	
-			demoOrd = DemoCustomerDB.getCustomerById(new Long(custId)).getDemoOrders();	
-		}catch(Exception e){
-			System.out.println(e);	
-		}finally{
-			request.setAttribute("single", true);
-			request.setAttribute("ordList", demoOrd);
-			getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);
-		}	
+		List<DemoOrder> demoOrd = DemoCustomerDB.getCustomerById(new Long(custId)).getDemoOrders();
+		
+		request.setAttribute("single", true);
+		request.setAttribute("ordList", demoOrd);
+		
+		getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);	
 	}//END AdminCustomerOrderHistoryAction
 }//END AdminCustomerOrderHistory

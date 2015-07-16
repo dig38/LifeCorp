@@ -34,17 +34,10 @@ public class AdminOrdersList extends HttpServlet {
 		
 	}//END Post
 	private void AdminOrdersListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		EntityTransaction trans = em.getTransaction();
-		trans.begin();
-		try{
-			DemoOrderDB.getAllDemoOrders();
-			@SuppressWarnings("unchecked")
-				List<DemoOrder> ordList = (List<DemoOrder>) em.createNamedQuery("DemoOrder.findAll").getResultList();
-			request.setAttribute("ordList", ordList);
-		}finally{
-			em.close();
-			getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);
-		}
+		List<DemoOrder> ordList = DemoOrderDB.getAllDemoOrders();
+		
+		request.setAttribute("ordList", ordList);
+		
+		getServletContext().getRequestDispatcher("/adminOrderList.jsp").forward(request, response);
 	}//END AdminOrdersListAction
 }//END AdminOrdersList
