@@ -10,7 +10,7 @@
 	<div id="wrap">
 	<c:import url="/inserts/header.jsp" />
 	<div class="container content">
-		<h1>Administration Home</h1>
+		<h1>Administration:</h1>
 	
 		<div class="row">
 			<div class="col-md-6">

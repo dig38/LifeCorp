@@ -1,26 +1,4 @@
 @CHARSET "ISO-8859-1";
-/*
-#indexform {
-    text-align: center;
-}
-
-.container{
-	min-height: 10em;
-}
-
-.index-container {
-	min-height: 10em;
-} 
-
-.navbar{
-	max-height: 2em;
-}
-
-footer{
-	min-height: 2em;
-}
-
-*/
 
 #index{
     background-image: url('../img/home-bg.jpg');

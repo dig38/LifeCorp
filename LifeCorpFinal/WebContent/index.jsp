@@ -17,8 +17,7 @@
 			<h1>Welcome to ....</h1><br />
 			<h1><strong>LifeCorp Shopping</strong></h1> <br>
 			<hr class="intro-divider" />
-			<div class="buttons">
-				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+			<div class="buttons col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="form-group form-group-sm col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div style="min-width:8em;" class="form-group form-group-sm col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						<input style="min-width:8em;" class="btn btn-default btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" value="Product List" onclick="location.href='DisplayProducts'">
