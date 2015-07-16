@@ -15,10 +15,10 @@
 		  <h3>Please select from the product list below:</h3>
 		  <form action="DisplayProducts" method="post">
 		  <select class="dropdown-toggle" name="category">
-		  		<option value="All">All</option>
-		  		<option value="Accessories">Accessories</option>
-				<option value="Mens">Mens</option>
-				<option value="Womens">Womens</option>		  	
+		  		<option value="All" <c:if test="${productCategory == 'All'}">Selected</c:if>>All</option>
+		  		<option value="Accessories" <c:if test="${productCategory == 'Accessories'}">Selected</c:if>>Accessories</option>
+				<option value="Mens" <c:if test="${productCategory == 'Mens'}">Selected</c:if>>Mens</option>
+				<option value="Womens" <c:if test="${productCategory == 'Womens'}">Selected</c:if>>Womens</option>		  	
 		  </select>
 		  		  	
 		  <input style="margin-left:3em;" class="btn btn-default" type="submit" value="View Category" />

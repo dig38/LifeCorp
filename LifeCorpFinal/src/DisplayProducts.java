@@ -57,6 +57,7 @@ public class DisplayProducts extends HttpServlet {
 			
 			// post entire list to session variable for retrieval in displayProducts screen
 			request.setAttribute("products", allProducts);
+			request.setAttribute("productCategory", "All");
 		}
 		else
 		{
@@ -64,7 +65,8 @@ public class DisplayProducts extends HttpServlet {
 			List<DemoProductInfo> products = DemoProductInfoDB.getProductsByCategory(category);
 			
 			// post entire list to session variable for retrieval in displayProducts screen
-						request.setAttribute("products", products);
+			request.setAttribute("products", products);
+			request.setAttribute("productCategory", category);
 		}
 		
 		
