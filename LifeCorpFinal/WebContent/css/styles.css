@@ -32,3 +32,11 @@ footer {
 	bottom:0;
 	left:0;
 }
+
+.submitLink {
+background-color: transparent;
+text-decoration: underline;
+border: none;
+color: blue;
+cursor: pointer;
+}
