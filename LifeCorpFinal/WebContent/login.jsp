@@ -115,13 +115,13 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="shipToState">State:</label>
 					<div class="col-sm-10">
-					<input type="text" name="shipToState" id="shipToState" maxlength="50" class="form-control" required />
+					<input type="text" name="shipToState" id="shipToState" maxlength="2" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="shipToZip">Zip Code:</label>
 					<div class="col-sm-10">
-						<input type="text" name="shipToZip" id="shipToZip" maxlength="50" class="form-control" required />
+						<input type="text" name="shipToZip" id="shipToZip" maxlength="10" pattern="^(\d{5}|\d{5}\-\d{4})$" class="form-control" required />
 					</div>
 				</div>
 <!--			<div class="form-group"> -->		

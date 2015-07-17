@@ -99,6 +99,8 @@ public class Login extends HttpServlet {
 		}
 		else if(action.equals("newCustomer"))	// new customer - get parameters from login.jsp to build new customer
 		{
+			boolean isInputPasswordsMatch = false;
+			
 			System.out.println("Get new customer details and create customer");
 			DemoCustomer customer = new DemoCustomer();
 			customer.setCustFirstName(request.getParameter("firstName"));
@@ -112,9 +114,14 @@ public class Login extends HttpServlet {
 			customer.setCustPostalCode(request.getParameter("shipToZip"));
 			customer.setCreditLimit(new BigDecimal("1000"));
 			
+			String password = request.getParameter("password");
+			String passwordDup = request.getParameter("passwordDup");
+			
+			isInputPasswordsMatch = (password.equals(passwordDup));
+			
 			DemoCustomer testExistCustomer = DemoCustomerDB.doesCustomerEmailExist(customer.getCustEmail());
 			
-			if (testExistCustomer == null)	// test for user with same email before insertion to preclude duplicates
+			if (testExistCustomer == null && isInputPasswordsMatch)	// test for user with same email before insertion to preclude duplicates
 			{
 				custId = DemoCustomerDB.insertCustomerReturnId(customer);
 				customer.setCustomerId(custId); 	// update customerId with returned value
@@ -150,8 +157,13 @@ public class Login extends HttpServlet {
 			else	// customer ID = 0 indicates a problem or duplicate creating customer 
 					// - send user back to login page
 			{
+				if(isInputPasswordsMatch)
+					request.setAttribute("message2", "Input passwords did not match please try again.");
+				else
+					request.setAttribute("message2", "Problem creating account or account already exists - please try again.");
+				
 				url = "/login.jsp";
-				request.setAttribute("message2", "Problem creating account or account already exists - please try again.");
+				
 			}
 		}
 		
