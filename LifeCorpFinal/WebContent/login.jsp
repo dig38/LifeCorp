@@ -167,7 +167,7 @@
 <!-- 			input control below done with javaScript submit to test the password field match -->
 				<div class="form-group">
 	    			<div class="col-sm-offset-2 col-sm-10">
-						<input type="button" id="calculate" class="btn btn-primary col-sm-2 col-md-2" value="Create Account" />
+						<input type="submit" id="calculate" class="btn btn-primary col-sm-2 col-md-2" value="Create Account" />
 					</div>
 				</div>
 			</fieldset>
