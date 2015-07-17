@@ -34,8 +34,12 @@
 		</tr>
 		<c:forEach var="ord" items="${ordList}">
 			<tr>
-				<c:url value="AdminCustomerOrderDetails" var="myURL">	<c:param name="id" value="${ord.orderId}" />	</c:url>
-				<td><span class="pull-right" ><a href="${myURL}"><c:out value="${ord.orderId}"/></a></span></td>
+				<th>
+					<form action="AdminCustomerOrderDetails" method="post">
+						<input type="hidden" name="id" value="${ord.orderId}" />
+						<span class="pull-right" ><input  class="submitLink" type="submit" value="<c:out value="${ord.orderId}"/>"></span>
+					</form>
+				</th>
 				<td></td>
 				<c:if test="${requestScope.single != true}">
 					<td><c:out value="${ord.demoCustomer.custFirstName} ${ord.demoCustomer.custLastName}"/></td>

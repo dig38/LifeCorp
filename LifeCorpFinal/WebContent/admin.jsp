@@ -11,17 +11,22 @@
 	<c:import url="/inserts/header.jsp" />
 	<div class="container content">
 		<h1>Administration:</h1>
-	
 		<div class="row">
 			<div class="col-md-6">
 				<h2>Customer List: </h2>
-				<p><a class="btn btn-Success col-md-3" href="AdminCustomerList" role="button">Customer List</a></p>
+				<form action="AdminCustomerList" method="post">
+					<input class="btn btn-default btn-lg col-xs-4 col-sm-4 col-md-4 col-lg-4" type="submit" value="Customer List"/>
+				</form>
 			</div>
 			<div class="col-md-6">
 				<h2>List of all Order: </h2>
-				<p><a class="btn btn-primary col-md-3" href="AdminOrderList" role="button">Order List</a></p>
+				<form action="AdminOrderList" method="post">
+					<input class="btn btn-default btn-lg col-xs-4 col-sm-4 col-md-4 col-lg-4" type="submit" value="Order List" />
+				</form>
 			</div>
+		
 		</div>
+		
 	</div> <!-- /container -->
 	<c:import url="/inserts/footer.jsp" />
 	</div><!-- wrap -->

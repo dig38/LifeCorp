@@ -34,9 +34,14 @@ footer {
 }
 
 .submitLink {
-background-color: transparent;
-text-decoration: underline;
-border: none;
-color: blue;
-cursor: pointer;
+	background-color: transparent;
+	border: none;
+	color: #337ab7;
+	cursor: pointer;
+	font-weight:500;
+	line-height: 1.42857;
+}
+
+.submitLink:hover {
+	text-decoration: underline;
 }
