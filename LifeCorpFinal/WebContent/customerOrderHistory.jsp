@@ -23,7 +23,19 @@
 			</tr>
 			<c:forEach var="History" items="${allOrders}">
 				<tr>
-					<td><a href = 'OrderDetails?orderId=<c:out value='${History.orderId}'/>'><c:out value='${History.orderId}'/></a></td>
+				
+				
+<!-- 				Replacement Code 				-->
+				<td>
+					<form action="OrderDetails" method="post">
+						<input type="hidden" name="orderId" value="<c:out value='${History.orderId}'/>" />
+						<input type="submit"  class="submitLink"  value="<c:out value='${History.orderId}'/>" />
+					</form>
+<!-- 				Replacement Code 				-->
+				</td>
+				
+<!-- 				original single line below to retrieve customer  order history -->
+<%-- 					<td><a href = 'OrderDetails?orderId=<c:out value='${History.orderId}'/>'><c:out value='${History.orderId}'/></a></td> --%>
 					<td><fmt:formatDate type="date" value="${History.orderTimestamp}" /></td>
 					<td class="right"><fmt:formatNumber value="${History.orderTotal}" type="currency"/></td>	
 				</tr> 	
