@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -47,6 +48,8 @@ public class CustomerOrderHistory extends HttpServlet {
 		DemoCustomer customer =  (DemoCustomer)session.getAttribute("customer");
 		
 		List<DemoOrder> orders = customer.getDemoOrders();
+		
+		Collections.sort(orders); 	// sort the orders in inverse chrononlogical order
 		
 		request.setAttribute("allOrders", orders);
 		

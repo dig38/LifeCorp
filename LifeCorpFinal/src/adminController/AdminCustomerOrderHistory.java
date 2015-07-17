@@ -1,6 +1,7 @@
 package adminController;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,6 +42,8 @@ public class AdminCustomerOrderHistory extends HttpServlet
 	{
 		String custId = request.getParameter("id");
 		List<DemoOrder> demoOrd = DemoCustomerDB.getCustomerById(new Long(custId)).getDemoOrders();
+		
+		Collections.sort(demoOrd); 	// sort the order list in inverse chronological order
 		
 		request.setAttribute("single", true);
 		request.setAttribute("ordList", demoOrd);

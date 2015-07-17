@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name="DEMO_ORDERS", schema="TESTUSER")
 @NamedQuery(name="DemoOrder.findAll", query="SELECT d FROM DemoOrder d")
-public class DemoOrder implements Serializable {
+public class DemoOrder implements Serializable, Comparable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -144,6 +144,17 @@ public class DemoOrder implements Serializable {
         }
         
         return item;
+    }
+    
+    // Added method to enable order sorting by date
+    public int compareTo(Object object)
+    {
+    	DemoOrder demoOrder = (DemoOrder) object;
+    	if (this.getOrderTimestamp().before(demoOrder.getOrderTimestamp()))
+    		return 1;
+    	if (this.getOrderTimestamp().after(demoOrder.getOrderTimestamp()))
+    		return -1;
+    	return 0;
     }
 
 }

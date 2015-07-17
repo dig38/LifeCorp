@@ -1,6 +1,7 @@
 package adminController;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,6 +43,8 @@ public class AdminOrdersList extends HttpServlet
 	
 	private void AdminOrdersListAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<DemoOrder> ordList = DemoOrderDB.getAllDemoOrders();
+		
+		Collections.sort(ordList); 	// sort the orders in inverse chronological order
 		
 		request.setAttribute("ordList", ordList);
 		
