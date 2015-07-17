@@ -19,15 +19,18 @@
 			<hr class="intro-divider" />
 			<div class="buttons col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="form-group form-group-sm col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div style="min-width:8em;" class="form-group form-group-sm col-xs-12 col-sm-4 col-md-4 col-lg-4">
-						<input style="min-width:8em;" class="btn btn-default btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" value="Product List" onclick="location.href='DisplayProducts'">
+					
+					<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
+					<div class="form-group form-group-sm col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						<input class="btn btn-default btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" value="Product List" onclick="location.href='DisplayProducts'">
 					</div>
 					
 					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2"></div>
 					
-					<div style="min-width:8em;" class="form-group form-group-sm col-xs-12 col-sm-4 col-md-4 col-lg-4">
-						<input style="min-width:8em;" class="btn btn-default btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12" type="submit" value="Login" onclick="location.href='login.jsp'">
+					<div class="form-group form-group-sm col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						<input class="btn btn-default btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12" type="submit" value="Login" onclick="location.href='login.jsp'">
 					</div>
+					<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>			
 				</div>
 			</div>
 		
