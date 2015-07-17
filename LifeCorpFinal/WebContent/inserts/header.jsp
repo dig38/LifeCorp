@@ -19,9 +19,7 @@
 						</c:if>
 						
 						<c:if test="${customer != null}">
-							<c:if test="${isAdmin == null || isAdmin == false}">
 								<li><a href="CustomerOrderHistory">Order History</a></li>
-							</c:if>
 						</c:if>
 						
 						<c:choose>
