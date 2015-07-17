@@ -69,7 +69,8 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="email">Email:</label>
 					<div class="col-sm-10">
-						<input type="email" name="email" id="email" maxlength="50" class="form-control" required />
+						<input type="email" name="email" id="email" maxlength="50" class="form-control" 
+							pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" required />
 					</div>
 				</div>
 				<div class="form-group">
