@@ -28,7 +28,7 @@
 			<c:if test="${requestScope.single != true}">
 				<th>Customer Name</th>
 			</c:if>
-			<th><span class="pull-right">Order Total</span></th>
+			<th><span class="pull-right">Number of Line Items</span></th>
 			<th><span class="pull-right">Order Timestamp</span></th>
 			<th><span class="pull-right">Order Total</span></th>
 		</tr>
@@ -41,7 +41,7 @@
 					<td><c:out value="${ord.demoCustomer.custFirstName} ${ord.demoCustomer.custLastName}"/></td>
 				</c:if>
 				
-				<td><span class="pull-right" ><c:out value="${ord.orderId}"/></span></td>
+				<td><span class="pull-right" ><c:out value="${ord.demoOrderItems.size()}"/></span></td>
 				<td><span class="pull-right" ><fmt:formatDate value="${ord.orderTimestamp}" pattern="MMM dd, yyyy"/></span></td>
 				<td><span class="pull-right" ><fmt:formatNumber type="currency" value="${ord.orderTotal}"/></span></td>
 			</tr> 
