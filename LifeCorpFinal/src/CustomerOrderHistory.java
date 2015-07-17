@@ -34,13 +34,15 @@ public class CustomerOrderHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doPost(request, response);
+		doPost(request, response);	// leave this method in to allow customer Order History pick in nav bar to work
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String url = "/customerOrderHistory.jsp";
 		
 		
 		HttpSession session = request.getSession();
@@ -49,11 +51,16 @@ public class CustomerOrderHistory extends HttpServlet {
 		
 		List<DemoOrder> orders = customer.getDemoOrders();
 		
+		if(orders == null || orders.isEmpty())
+		{
+			url = "/noCustomerOrderHistory.jsp";
+		}
+		
 		Collections.sort(orders); 	// sort the orders in inverse chrononlogical order
 		
 		request.setAttribute("allOrders", orders);
 		
-		getServletContext().getRequestDispatcher("/customerOrderHistory.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 		
 	}
 
