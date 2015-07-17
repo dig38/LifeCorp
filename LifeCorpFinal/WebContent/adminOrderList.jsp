@@ -36,7 +36,8 @@
 			<tr>
 				<th>
 					<form action="AdminCustomerOrderDetails" method="post">
-						<input type="hidden" name="id" value="${ord.orderId}" />
+						<c:set var="orderid"><c:out value="${ord.orderId}" /></c:set>
+						<input type="hidden" name="id" value="${orderid}" />
 						<span class="pull-right" ><input  class="submitLink" type="submit" value="<c:out value="${ord.orderId}"/>"></span>
 					</form>
 				</th>

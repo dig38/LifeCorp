@@ -9,7 +9,7 @@
 <div id="wrap">
 	<c:import url="/inserts/header.jsp" />
 	<div class="container content">
-	    ${message}
+	    <c:out value="${message}"/>
 	    <div class="jumbotron">
 			<h1>Welcome to LifeCorp</h1>
 		</div>

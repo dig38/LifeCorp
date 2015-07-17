@@ -24,12 +24,14 @@
 				<th><c:out value="${Cust.customerId}"/></th>
 				<th>
 					<form action="AdminCustomerOrderHistory" method="post">
-						<input type="hidden" name="id" value="${Cust.customerId}" />
+						<c:set var="cusomertid"><c:out value="${Cust.customerId}" /></c:set>
+						<input type="hidden" name="id" value="${cusomertid}" />
 						<input  class="submitLink" type="submit" value="<c:out value="${Cust.custFirstName} ${Cust.custLastName}"/>">
 					</form>
 				</th>
 				<th><c:out value="${Cust.custState}"/></th>
-				<th><fmt:formatNumber  type="currency" value="${Cust.creditLimit}"/></th>
+				<c:set var="cusomertcreditlimit"><c:out value="${Cust.creditLimit}" /></c:set>
+				<th><fmt:formatNumber  type="currency" value="${cusomertcreditlimit}"/></th>
 				<th><c:out value="${Cust.custEmail}"/></th>
 			</tr>
 		</c:forEach>

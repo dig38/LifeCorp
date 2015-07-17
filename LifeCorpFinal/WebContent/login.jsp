@@ -35,7 +35,8 @@
 				<c:if test="${message1 != null && message1 != ''}">
 					<div class="form-group">
 						<div class="col-sm-12 col-md-12">
-							<input type="text" name="message" value="${message1}" class="alert alert-danger col-sm-12 col-md-12" readonly="readonly" />
+							<c:set var="messageone"><c:out value="${message1}" /></c:set>
+							<input type="text" name="message" value="${messageone}" class="alert alert-danger col-sm-12 col-md-12" readonly="readonly" />
 						</div>
 					</div>
 				</c:if>
@@ -56,31 +57,31 @@
 				<div class="form-group">	
 					<label class="col-sm-2 control-label" for="firstName">First Name:</label>
 					<div class="col-sm-10">
-						<input type="text" name="firstName" maxlength="50" class="form-control" required />
+						<input type="text" name="firstName" id="firstName" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="lastName">Last Name:</label>
 					<div class="col-sm-10">
-						<input type="text" name="lastName" maxlength="50" class="form-control" required />
+						<input type="text" name="lastName" id="lastName" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="email">Email:</label>
 					<div class="col-sm-10">
-						<input type="email" name="email" maxlength="50" class="form-control" required />
+						<input type="email" name="email" id="email" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="phone">Phone:</label>
 					<div class="col-sm-10">
-						<input type="text" name="phone" maxlength="50" class="form-control" required />
+						<input type="text" name="phone" id="phone" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">		
 					<label class="col-sm-2 control-label" for="password">Password:</label>
 					<div class="col-sm-10">
-						<input type="password" name="password" id="pass1" maxlength="50" class="form-control" required />
+						<input type="password" name="password" id="password" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				
@@ -89,7 +90,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="passwordDup">Password Confirmation:</label>
 					<div class="col-sm-10">
-						<input type="password" name="passwordDup" id="pass2" maxlength="50" class="form-control" required />
+						<input type="password" name="passwordDup" id="passwordDup" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 <!--			<div class="form-group"> -->				
@@ -102,25 +103,25 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="shipToStreet">Ship to Address:</label>
 					<div class="col-sm-10">
-						<input type="text" name="shipToStreet" maxlength="50" class="form-control" required />
+						<input type="text" name="shipToStreet" id="shipToStreet" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="shipToCity">City:</label>
 					<div class="col-sm-10">
-						<input type="text" name="shipToCity" maxlength="50" class="form-control" required />
+						<input type="text" name="shipToCity" id="shipToCity" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="shipToState">State:</label>
 					<div class="col-sm-10">
-					<input type="text" name="shipToState" maxlength="50" class="form-control" required />
+					<input type="text" name="shipToState" id="shipToState" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="shipToZip">Zip Code:</label>
 					<div class="col-sm-10">
-						<input type="text" name="shipToZip" maxlength="50" class="form-control" required />
+						<input type="text" name="shipToZip" id="shipToZip" maxlength="50" class="form-control" required />
 					</div>
 				</div>
 <!--			<div class="form-group"> -->		
@@ -155,7 +156,8 @@
 				<c:if test="${message2 != null && message2 != ''}">
 					<div class="form-group">
 						<div class="col-sm-12 col-md-12">
-							<input type="text" name="message" value="${message2}" class="alert alert-danger col-sm-12 col-md-12" readonly="readonly" />
+							<c:set var="messagetwo"><c:out value="${message2}" /></c:set>
+							<input type="text" name="message" value="${messagetwo}" class="alert alert-danger col-sm-12 col-md-12" readonly="readonly" />
 						</div>
 					</div>
 				</c:if>
@@ -174,11 +176,11 @@
 	
 	</div> <!-- /container -->
 	<c:import url="/inserts/footer.jsp" />
-</div><!-- wrap -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- Local script for create account button -->
 	<script type="text/javascript" src="scripts/checkPass.js" ></script>
+</div><!-- wrap -->
+	
+	
 	
 </body>
 </html>

@@ -42,12 +42,14 @@
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<%-- <div class="form-group">
 					<label for="creditCard" class="col-sm-2 control-label">Credit Card:</label>
 					<div class="col-sm-10">
-						<input type="text" name="creditCard" class="form-control" readonly="readonly" value="${lastFour}" />
+						<c:set var="last4"><c:out value="${lastFour}" /></c:set>
+						<input type="text" name="creditCard" class="form-control" readonly="readonly" value="${last4}" />
 					</div>
 				</div>
+				--%>
 			</fieldset>
 		</form> 
 		
