@@ -22,8 +22,6 @@
 		<c:forEach var="Cust" items="${custList}">
 			<tr>
 				<th><c:out value="${Cust.customerId}"/></th>
-				<%--<c:url value="AdminCustomerOrderHistory" var="myURL">	<c:param name="id" value="${Cust.customerId}" />	</c:url>
-				<th><a href="${myURL}"><c:out value="${Cust.custFirstName} ${Cust.custLastName}"/></a></th>--%>
 				<th>
 					<form action="AdminCustomerOrderHistory" method="post">
 						<input type="hidden" name="id" value="${Cust.customerId}" />
