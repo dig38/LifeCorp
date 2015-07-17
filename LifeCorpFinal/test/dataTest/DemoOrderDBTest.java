@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import model.DemoCustomer;
@@ -211,6 +213,7 @@ public class DemoOrderDBTest
 		
 	}
 	
+	@Test
 	public void testRemoveCartOrderItem()
 	{
 		int originalLength = 0;
@@ -240,6 +243,62 @@ public class DemoOrderDBTest
 			fail("A problem occurred deleting an item in removeCartOrderItem method: " + e);
 		}
 	}
+	
+	@Test
+	public void testCompareTo()
+	{
+		String initialOrderString = "0";
+		String finalOrderString = "0";
+		
+		GregorianCalendar gDate1 = new GregorianCalendar(2015, 6, 15);
+		GregorianCalendar gDate2 = new GregorianCalendar(2015, 5, 14);
+		GregorianCalendar gDate3 = new GregorianCalendar(2015, 4, 13);
+		
+		DemoOrder order1 = new DemoOrder();
+		DemoOrder order2 = new DemoOrder();
+		DemoOrder order3 = new DemoOrder();
+		
+		order1.setOrderTimestamp(gDate1.getTime());
+		order1.setOrderId(1);
+		order1.setOrderTotal(new BigDecimal(1890));
+		
+		order2.setOrderTimestamp(gDate2.getTime());
+		order2.setOrderId(2);
+		order2.setOrderTotal(new BigDecimal(2380));
+		
+		order3.setOrderTimestamp(gDate3.getTime());
+		order3.setOrderId(3);
+		order3.setOrderTotal(new BigDecimal(1640));
+		
+		List<DemoOrder> testOrders = new ArrayList<DemoOrder>();
+		
+		// now add the orders out of order
+		testOrders.add(order2);
+		testOrders.add(order1);
+		testOrders.add(order3);
+		
+		for (DemoOrder t : testOrders)	// iterate to get the unsorted order IDs into a string
+		{
+			initialOrderString += t.getOrderId();
+		}
+		
+		Collections.sort(testOrders);
+		
+		for (DemoOrder t : testOrders)	// iterate to get the unsorted order IDs into a string
+		{
+			finalOrderString += t.getOrderId();
+		}
+		
+		try 
+		{
+			assertTrue(finalOrderString.equals("0123") && !finalOrderString.equals(initialOrderString));
+		}
+		catch (Exception e)
+		{
+			fail("The implementation of Comparable interface in DemoOrder not working: " + e);
+		}
+	}
+	
 	
 	 public static Object deepClone(Object object) 
 	 {
